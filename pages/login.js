@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Layout from "../component/Layout";
 import Typography from "../component/Typography";
 import Button from "../component/Button";
@@ -13,8 +14,11 @@ const StyledButton = styled(Button)`
   border-radius: 100px;
   border: none;
 `;
+import Input from "../component/Input";
 
 export default function Login() {
+  const [content, setContent] = useState("");
+  console.log(content);
   return (
     <Layout>
       <Margin size="30" />
@@ -40,6 +44,12 @@ export default function Login() {
       <Typography color="#DF2A19" size="16">
         회원가입하기
       </Typography>
+      <Input
+        placeholder="학생 이름을 검색하세요"
+        id
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+      />
     </Layout>
   );
 }
