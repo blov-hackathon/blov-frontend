@@ -1,10 +1,13 @@
 import Layout from "../component/Layout";
+import Typography from "../component/Typography";
 
 export default function Home() {
   return (
     <Layout>
-      <>hello</>
-      <h1>hihihi</h1>
+      <Typography>hello</Typography>
+      <Typography color="blue" size="100px">
+        hihihi
+      </Typography>
     </Layout>
   );
 }
