@@ -30,6 +30,8 @@ const StyledButton = styled(Button)`
 
 export default function Login() {
   const [content, setContent] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <Layout>
       <Margin size="120" />
@@ -45,8 +47,8 @@ export default function Login() {
       <StyledInput
         password
         placeholder="패스워드"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
       <Margin size="10" />
       <StyledCheck>

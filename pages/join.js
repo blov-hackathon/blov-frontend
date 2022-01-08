@@ -33,6 +33,10 @@ const StyledButton = styled(Button)`
 
 export default function Join() {
   const [content, setContent] = useState("");
+  const [phone, setPhone] = useState("");
+  const [bloodtype, setBloodtype] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <Layout>
       <StyledTitle>
@@ -56,22 +60,22 @@ export default function Join() {
       <StyledInput
         id
         placeholder="전화번호를 입력해주세요."
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
       />
       <Margin size="20" />
       <StyledInput
         id
         placeholder="혈액형을 입력해주세요."
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
+        value={bloodtype}
+        onChange={(e) => setBloodtype(e.target.value)}
       />
       <Margin size="20" />
       <StyledInput
         password
         placeholder="패스워드를 입력해주세요."
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
       <StyledMargin size="60" />
       <StyledButton backgroundColor="red" width="280" height="50">
