@@ -6,12 +6,12 @@ const Input = styled.input`
   font-size: 0.875rem;
   padding: 10px 12px;
   width: 343px;
-  height: 40px;
+  height: 60px;
   box-sizing: border-box;
   outline: none;
 
   &::placeholder {
-    color: red;
+    color: #aaa;
   }
 
   &:focus {
@@ -25,7 +25,7 @@ const Input = styled.input`
     `
     background-image: url(/login/phone-icon.svg);
     background-repeat: no-repeat;
-    background-position: 10px center;
+    background-position: 20px center;
     padding: 10px 12px 10px 50px;
     `}
 
@@ -34,7 +34,7 @@ const Input = styled.input`
     `
     background-image: url(/login/lock-icon.svg);
     background-repeat: no-repeat;
-    background-position: 10px center;
+    background-position: 20px center;
     padding: 10px 12px 10px 50px;
     `}
 `;
