@@ -7,6 +7,7 @@ const Button = styled.button`
   border-radius: 10px;
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : "white"};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "600")};
   color: ${(props) => (props.color ? props.color : "black")};
   z-index: inherit;
 
