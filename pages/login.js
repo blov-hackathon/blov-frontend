@@ -5,9 +5,10 @@ import Button from "../component/Button";
 import Margin from "../component/Margin";
 import Input from "../component/Input";
 import styled, { css } from "styled-components";
+import Link from "next/link";
 
 const LogoImage = styled.img`
-  height: 120px;
+  height: 100px;
 `;
 
 const StyledMargin = styled(Margin)``;
@@ -20,12 +21,15 @@ const StyledInput = styled(Input)`
 
 const StyledCheck = styled.div`
   text-align: left;
-  font-weight: 600;
 `;
 
 const StyledButton = styled(Button)`
   border-radius: 100px;
   border: none;
+`;
+
+const StyledText = styled.div`
+  text-align: left;
 `;
 
 export default function Login() {
@@ -34,16 +38,16 @@ export default function Login() {
 
   return (
     <Layout>
-      <Margin size="120" />
+      <Margin size="100" />
       <LogoImage src="/login/main-icon.svg" />
       <Margin size="20" />
       <StyledInput
         id
-        placeholder="전화번호"
+        placeholder="전화번호 (010XXXXXXXX)"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <Margin size="20" />
+      <Margin size="10" />
       <StyledInput
         password
         placeholder="패스워드"
@@ -52,23 +56,28 @@ export default function Login() {
       />
       <Margin size="10" />
       <StyledCheck>
-        <Typography color="#000" size="14">
+        <Typography color="#000" size="12">
           로그인 상태 유지
         </Typography>
       </StyledCheck>
       <StyledMargin size="60" />
-      <StyledButton backgroundColor="red" width="360" height="50">
+      <StyledButton backgroundColor="red" width="300" height="60">
         <Typography color="#fff" size="16">
           로그인
         </Typography>
       </StyledButton>
       <Margin size="5" />
-      <Typography color="#505050" size="14">
-        Blov가 처음이신가요?
-      </Typography>
-      <Typography color="#DF2A19" size="14">
-        회원가입하기
-      </Typography>
+      <StyledText>
+        <Typography color="#505050" size="12">
+          Blov가 처음이신가요?
+        </Typography>
+        &nbsp;
+        <Link href={"/join"}>
+          <Typography color="#DF2A19" size="12">
+            회원가입하기
+          </Typography>
+        </Link>
+      </StyledText>
     </Layout>
   );
 }
