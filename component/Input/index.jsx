@@ -37,6 +37,26 @@ const Input = styled.input`
     background-position: 20px center;
     padding: 10px 12px 10px 50px;
     `}
+
+${(props) =>
+    props.person &&
+    `
+    background-image: url(/join/person-icon.svg);
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    background-size: 20px;
+    padding: 10px 12px 10px 50px;
+    `}
+
+${(props) =>
+    props.blood &&
+    `
+    background-image: url(/join/blood-icon.svg);
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    background-size: 16px;
+    padding: 10px 12px 10px 50px;
+    `}
 `;
 
 export default Input;

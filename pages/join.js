@@ -39,6 +39,8 @@ export default function Join() {
 
   return (
     <Layout>
+      {" "}
+      <Margin size="40" />
       <StyledTitle>
         <LineMargin size="3" />
         <Typography color="#DF2A19" size="24">
@@ -48,29 +50,28 @@ export default function Join() {
           쉽고 빠르게 나의 헌혈정보를 확인하세요.
         </Typography>
       </StyledTitle>
-
-      <StyledMargin size="100" />
+      <StyledMargin size="80" />
       <StyledInput
-        id
+        person
         placeholder="이름을 입력해주세요."
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <Margin size="20" />
+      <Margin size="10" />
       <StyledInput
         id
         placeholder="전화번호를 입력해주세요."
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
       />
-      <Margin size="20" />
+      <Margin size="10" />
       <StyledInput
-        id
+        blood
         placeholder="혈액형을 입력해주세요."
         value={bloodtype}
         onChange={(e) => setBloodtype(e.target.value)}
       />
-      <Margin size="20" />
+      <Margin size="10" />
       <StyledInput
         password
         placeholder="패스워드를 입력해주세요."
