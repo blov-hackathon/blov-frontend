@@ -1,13 +1,16 @@
+import styled, { css } from "styled-components";
 import Layout from "../component/Layout";
-import Typography from "../component/Typography";
+import Margin from "../component/Margin";
 
-export default function Home() {
+const LogoImage = styled.img`
+  height: 120px;
+`;
+
+export default function Start() {
   return (
     <Layout>
-      <Typography>hello</Typography>
-      <Typography color="blue" size="100px">
-        hihihi
-      </Typography>
+      <Margin size="200" />
+      <LogoImage src="/login/main-icon.svg" />
     </Layout>
   );
 }
