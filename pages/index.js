@@ -1,37 +1,16 @@
+import styled, { css } from "styled-components";
 import Layout from "../component/Layout";
-import Typography from "../component/Typography";
+import Margin from "../component/Margin";
 
-const divStyle = {
-    width: "300px",
-    height: "500px",
-};
+const LogoImage = styled.img`
+  height: 120px;
+`;
 
-export default function Home() {
-    return (
-        <Layout>
-            <Typography>hello</Typography>
-            <Typography color="red" size="100">
-                hihihi
-            </Typography>
-            <Carousel
-                width="400px"
-                height="600px"
-                slidesToShow={1} // 한 번에 보여줄 슬라이드의 개수
-                cellAlign="center"
-                renderCenterLeftControls={({ previousSlide }) => null}
-                renderCenterRightControls={({ nextSlide }) => null}
-                // 좌, 우 이동 버튼 제거
-            >
-                <div style={divStyle}>
-                    <NFT></NFT>
-                </div>
-                <div style={divStyle}>
-                    <NFT></NFT>
-                </div>
-                <div style={divStyle}>
-                    <NFT></NFT>
-                </div>
-            </Carousel>
-        </Layout>
-    );
+export default function Start() {
+  return (
+    <Layout>
+      <Margin size="200" />
+      <LogoImage src="/login/main-icon.svg" />
+    </Layout>
+  );
 }
