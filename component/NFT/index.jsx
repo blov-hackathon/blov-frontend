@@ -5,15 +5,9 @@ import Typography from "../Typography";
 import Margin from "../Margin";
 
 const StyledTypography = styled(Typography)`
-    margin-left: 15px;
-    margin-right: 15px;
-    color: #df2a19;'
-    font-size:24px;
-`;
-
-const BoldTypography = styled(Typography)`
-    font-weight: bold;
-    color: #df2a19;
+    margin-left: 18px;
+    margin-right: 18px;
+    color: ${(props) => (props.color ? props.color : "#df2a19")};
 `;
 
 const NFTstyle = styled.div`
@@ -38,7 +32,13 @@ const NFTfooter = styled.div`
 `;
 
 const LogoImage = styled.img`
+    margin-left: 60px;
     height: 40px;
+`;
+
+const ShareLogo = styled.img`
+    margin-left: 5px;
+    height: 30px;
 `;
 
 export default function NFT() {
@@ -50,18 +50,17 @@ export default function NFT() {
     }, []);*/
     return (
         <NFTstyle>
-            <Margin size="20" />
-            <StyledTypography color="#DF2A19" size="16">
-                2021.01.19
-            </StyledTypography>
+            <Margin size="15" />
+            <StyledTypography size="17">2021.01.19</StyledTypography>
             <LogoImage src="/login/main-icon.svg" />
             <NFTbackground>
-                <Margin size="170" />
-                <StyledTypography color="#DF2A19" size="16">
-                    인천멋사혈액원
-                </StyledTypography>
-                <br></br>
-                <BoldTypography>전혈 320ML</BoldTypography>
+                <Margin size="160" />
+                <StyledTypography size="16">인천멋사혈액원</StyledTypography>
+                <br />
+                <StyledTypography size="28">전혈 320ML</StyledTypography>
+
+                <ShareLogo src="/login/main-icon.svg" />
+                <Margin size="20" />
             </NFTbackground>
             <NFTfooter>
                 <Margin size="40" />
@@ -85,3 +84,4 @@ get으로 받음
             <Typography>{데이터.혈액종류}</Typography>
             <Typography>{데이터.헌혈증번호}</Typography>//
 */
+//<LogoImage src="/login/main-icon.svg" />
