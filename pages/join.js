@@ -29,6 +29,11 @@ const StyledTitle = styled.div`
 const StyledButton = styled(Button)`
   border-radius: 100px;
   border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffdeeb;
+  }
 `;
 
 export default function Join() {
@@ -67,7 +72,7 @@ export default function Join() {
       <Margin size="10" />
       <StyledInput
         blood
-        placeholder="혈액형을 입력해주세요."
+        placeholder="혈액형을 입력해주세요.(ex. A형 Rh+)"
         value={bloodtype}
         onChange={(e) => setBloodtype(e.target.value)}
       />
@@ -76,6 +81,7 @@ export default function Join() {
         password
         placeholder="패스워드를 입력해주세요."
         value={password}
+        type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
       <StyledMargin size="60" />
