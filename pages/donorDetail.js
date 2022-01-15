@@ -4,6 +4,7 @@ import Typography from "../component/Typography";
 import Button from "../component/Button";
 import Margin from "../component/Margin";
 import styled from "styled-components";
+import Link from "next/link";
 
 export default function DonorDetail() {
 
@@ -12,10 +13,12 @@ const [enable, setEnable] = useState(true);
 const StyledButton = styled(Button)`
       border-radius: 100px;
       border: none;
+      cursor: pointer;
 `;
 
 const BackButton = styled.img`
-      width: 16px;
+  width: 16px;
+  cursor: pointer;
 `;
 
 const CheckImage = styled.img`
@@ -92,11 +95,13 @@ function SendButton() {
         <div>
             {
                 enable
-                    ? <StyledButton backgroundColor="#DF2A19" width="300" height="50">
-                        <Typography color="#fff" size="16">
-                            헌혈증 보내기
-                        </Typography>
-                    </StyledButton>
+                    ? <Link href='#'>
+                        <StyledButton backgroundColor="#DF2A19" width="300" height="50">
+                            <Typography color="#fff" size="16">
+                                헌혈증 보내기
+                            </Typography>
+                        </StyledButton>
+                    </Link>
                     : <StyledButton backgroundColor="#9B9B9B" width="300" height="50">
                         <Typography color="#fff" size="16">
                             헌혈증 전달완료!
@@ -111,8 +116,11 @@ function SendButton() {
         <Layout>
 
             <TitleGrid>
-                <BackButton src='/temp/temp-back.svg' />
+                <Link href='#'>
+                    <BackButton src='/temp/temp-back.svg' />
+                </Link>
                 <TitleTypography>헌혈증 상세보기</TitleTypography>
+
             </TitleGrid>
             <Margin size="60" />
 
