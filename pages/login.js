@@ -26,10 +26,19 @@ const StyledCheck = styled.div`
 const StyledButton = styled(Button)`
   border-radius: 100px;
   border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffdeeb;
+  }
 `;
 
 const StyledText = styled.div`
   text-align: left;
+`;
+
+const StyledTypo = styled(Typography)`
+  cursor: pointer;
 `;
 
 export default function Login() {
@@ -52,6 +61,7 @@ export default function Login() {
         password
         placeholder="패스워드"
         value={password}
+        type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
       <Margin size="10" />
@@ -73,9 +83,9 @@ export default function Login() {
         </Typography>
         &nbsp;
         <Link href={"/join"}>
-          <Typography color="#DF2A19" size="12">
+          <StyledTypo color="#DF2A19" size="12">
             회원가입하기
-          </Typography>
+          </StyledTypo>
         </Link>
       </StyledText>
     </Layout>
