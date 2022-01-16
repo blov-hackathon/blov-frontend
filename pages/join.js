@@ -5,6 +5,7 @@ import Button from "../component/Button";
 import Margin from "../component/Margin";
 import Input from "../component/Input";
 import styled, { css } from "styled-components";
+import axios from "axios";
 
 const LineMargin = styled(Margin)`
   background-color: #df2a19;
@@ -51,6 +52,34 @@ export default function Join() {
   const [bloodtype, setBloodtype] = useState("");
   const [password, setPassword] = useState("");
 
+  const requestJoin = () => {
+    console.log(content);
+    console.log(phone);
+    console.log(bloodtype);
+    console.log(password);
+
+    axios(`http://127.0.0.1:8000/register`, {
+      method: "POST",
+      crossDomain: true,
+      header: {
+        "content-type": "application/json",
+      },
+      data: {
+        name: content,
+        phone_number: phone,
+        blood_type: bloodtype,
+        password: password,
+      },
+    })
+      .then(() => {
+        console.log("회원가입에 성공했습니다.");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("회원가입에 성공했습니다.");
+      });
+  };
+
   return (
     <Layout>
       <Margin size="40" />
@@ -93,7 +122,12 @@ export default function Join() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <StyledMargin size="60" />
-      <StyledButton backgroundColor="red" width="280" height="50">
+      <StyledButton
+        backgroundColor="red"
+        width="280"
+        height="50"
+        onClick={requestJoin}
+      >
         <Typography color="#fff" size="16">
           회원가입
         </Typography>
