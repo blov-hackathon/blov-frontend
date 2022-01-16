@@ -5,69 +5,71 @@ import Typography from "../Typography";
 import Margin from "../Margin";
 
 const StyledTypography = styled(Typography)`
-    margin-left: 18px;
-    margin-right: 18px;
-    color: ${(props) => (props.color ? props.color : "#df2a19")};
+  margin-left: 18px;
+  margin-right: 18px;
+  color: ${(props) => (props.color ? props.color : "#df2a19")};
 `;
 
 const NFTstyle = styled.div`
-    height: 360px;
-    width: 240px;
-    border: solid 1px lightgray;
-    border-radius: 18px;
+  height: 360px;
+  width: 240px;
+  border: solid 1px lightgray;
+  border-radius: 18px;
 `;
 
 const NFTbackground = styled.div`
-    height: 250px;
-    width: 240px;
+  height: 250px;
+  width: 240px;
 `;
 
 const NFTfooter = styled.div`
-    height: 80px;
-    background-color: #df2a19;
-    vertical-align: bottom;
-    text-align: right;
-    border-bottom-left-radius: 18px;
-    border-bottom-right-radius: 18px;
+  height: 80px;
+  background-color: #df2a19;
+  vertical-align: bottom;
+  text-align: right;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
 `;
 
 const LogoImage = styled.img`
-    margin-left: 60px;
-    height: 40px;
+  margin-left: 60px;
+  height: 40px;
 `;
 
 const ShareLogo = styled.img`
-    margin-left: 5px;
-    height: 30px;
+  margin-left: 5px;
+  height: 30px;
 `;
 
-export default function NFT() {
-    const [nftData, setNftData] = useState([]);
-    /*useEffect(() => {
+export default function NFT(data) {
+  const [nftData, setNftData] = useState(data.data);
+  console.log(data);
+  console.log(nftData);
+  /*useEffect(() => {
         axios
             .get("URL이름 우헤헤")
             .then(({ 데이터이름 }) => setNftData(데이터이름));
     }, []);*/
-    return (
-        <NFTstyle>
-            <Margin size="15" />
-            <StyledTypography size="17">2021.01.19</StyledTypography>
-            <LogoImage src="/login/main-icon.svg" />
-            <NFTbackground>
-                <Margin size="160" />
-                <StyledTypography size="16">인천멋사혈액원</StyledTypography>
-                <br />
-                <StyledTypography size="28">전혈 320ML</StyledTypography>
+  return (
+    <NFTstyle>
+      <Margin size="15" />
+      <StyledTypography size="17">2021.01.19</StyledTypography>
+      <LogoImage src="/login/main-icon.svg" />
+      <NFTbackground>
+        <Margin size="160" />
+        <StyledTypography size="16">{nftData.name}}</StyledTypography>
+        <br />
+        <StyledTypography size="28">{nftData.blood}</StyledTypography>
 
-                <ShareLogo src="/login/main-icon.svg" />
-                <Margin size="20" />
-            </NFTbackground>
-            <NFTfooter>
-                <Margin size="40" />
-                <StyledTypography color="white">01-23-456789</StyledTypography>
-            </NFTfooter>
-        </NFTstyle>
-    );
+        <ShareLogo src="/login/main-icon.svg" />
+        <Margin size="20" />
+      </NFTbackground>
+      <NFTfooter>
+        <Margin size="40" />
+        <StyledTypography color="white">{nftData.number}</StyledTypography>
+      </NFTfooter>
+    </NFTstyle>
+  );
 }
 
 /*
