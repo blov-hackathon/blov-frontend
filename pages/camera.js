@@ -6,6 +6,7 @@ import styled, { css } from "styled-components";
 //import QrReader from "react-qr-reader";
 import { useState, useRef } from "react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const LogoContainer = styled.div`
   position: relative;
@@ -47,6 +48,8 @@ export default function Camera() {
     }
   };
 
+  const router = useRouter();
+
   return (
     <Layout>
       {" "}
@@ -65,7 +68,12 @@ export default function Camera() {
         />
       </CameraContainer>
       <Margin size="60" />
-      <StyledButton backgroundColor="red" width="280" height="50">
+      <StyledButton
+        backgroundColor="red"
+        width="280"
+        height="50"
+        onClick={() => router.push("/addAddress")}
+      >
         <Typography color="#fff" size="16">
           주소를 직접 입력하시겠어요?
         </Typography>
