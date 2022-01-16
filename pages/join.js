@@ -6,6 +6,7 @@ import Margin from "../component/Margin";
 import Input from "../component/Input";
 import styled, { css } from "styled-components";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const LineMargin = styled(Margin)`
   background-color: #df2a19;
@@ -51,14 +52,10 @@ export default function Join() {
   const [phone, setPhone] = useState("");
   const [bloodtype, setBloodtype] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const requestJoin = () => {
-    console.log(content);
-    console.log(phone);
-    console.log(bloodtype);
-    console.log(password);
-
-    axios(`http://127.0.0.1:8000/register`, {
+    axios(`https://api-dev.blov.us/register`, {
       method: "POST",
       crossDomain: true,
       header: {
@@ -73,6 +70,7 @@ export default function Join() {
     })
       .then(() => {
         console.log("회원가입에 성공했습니다.");
+        router.push("/login");
       })
       .catch((e) => {
         console.log(e);
