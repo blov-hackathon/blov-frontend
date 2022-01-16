@@ -8,6 +8,8 @@ import { useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
+import Link from "next/link";
+
 const LogoContainer = styled.div`
   position: relative;
 `;
@@ -68,6 +70,7 @@ export default function Camera() {
         />
       </CameraContainer>
       <Margin size="60" />
+
       <StyledButton
         backgroundColor="red"
         width="280"
@@ -78,6 +81,7 @@ export default function Camera() {
           주소를 직접 입력하시겠어요?
         </Typography>
       </StyledButton>
+
     </Layout>
   );
 }

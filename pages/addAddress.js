@@ -5,7 +5,9 @@ import Button from "../component/Button";
 import Margin from "../component/Margin";
 import styled from "styled-components";
 import Link from "next/link";
+
 import { useRouter } from "next/router";
+
 
 export default function DonorDetail() {
   const [enable, setEnable] = useState(true);
@@ -16,9 +18,11 @@ export default function DonorDetail() {
     cursor: pointer;
   `;
 
+
   const BackBtn = styled(Button)`
     border: none;
   `;
+
 
   const BackButton = styled.img`
     width: 16px;
@@ -78,6 +82,7 @@ export default function DonorDetail() {
     size: 32px;
   `;
 
+
   const router = useRouter();
 
   return (
@@ -86,6 +91,7 @@ export default function DonorDetail() {
         <BackBtn onClick={() => router.push("/camera")}>
           <BackButton src="/temp/temp-back.svg" />
         </BackBtn>
+
         <TitleTypography>주소 입력하기</TitleTypography>
       </TitleGrid>
       <Margin size="60" />
