@@ -6,6 +6,7 @@ import styled, { css } from "styled-components";
 //import QrReader from "react-qr-reader";
 import { useState, useRef } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const LogoContainer = styled.div`
   position: relative;
@@ -65,11 +66,13 @@ export default function Camera() {
         />
       </CameraContainer>
       <Margin size="60" />
-      <StyledButton backgroundColor="red" width="280" height="50">
-        <Typography color="#fff" size="16">
-          주소를 직접 입력하시겠어요?
-        </Typography>
-      </StyledButton>
+      <Link href={"/addAddress"}>
+        <StyledButton backgroundColor="red" width="280" height="50">
+          <Typography color="#fff" size="16">
+            주소를 직접 입력하시겠어요?
+          </Typography>
+        </StyledButton>
+      </Link>
     </Layout>
   );
 }
