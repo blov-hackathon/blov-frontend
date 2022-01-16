@@ -7,10 +7,14 @@ import styled, { css } from "styled-components";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
+import samples from "../public/data/samples";
 import ImagePicker from "../component/ImagePicker";
 
 export default function Custom1() {
   const [enable, setEnable] = useState(true);
+  const router = useRouter();
+
+  const [sampleImage, setSampleImage] = useState();
 
   const StyledButton = styled(Button)`
     border-radius: 100px;
@@ -87,23 +91,6 @@ export default function Custom1() {
     text-align: center;
   `;
 
-  const ImageOption = styled.div``;
-
-  const optionCircle = (image = "", color) => css`
-    width: 70px;
-    height: 70px;
-    border-radius: 35px;
-    border: 5px solid #ffffff;
-    background-color: ${color || "#000"};
-    background-image: url(${image});
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
-    transition: 0.3s all;
-  `;
-
-  const router = useRouter();
-  const ItemImage = "../login/main-icon.svg";
   return (
     <Layout>
       <TitleGrid>
@@ -112,20 +99,21 @@ export default function Custom1() {
         </BackBtn>
         <TitleTypography>나만의 헌혈증 꾸미기 1/2</TitleTypography>
       </TitleGrid>
-      <Margin size="40" />
+
+      <Margin size="20" />
+
       <CardContainer>
         <OriginCard src="/temp/temp-card.svg" />
       </CardContainer>
+
       <Margin size="40" />
+
       <CustomContainer>
         <SubText>이미지 선택하기</SubText>
-        <ImageOption>
-          {" "}
-          <div css={optionCircle(ItemImage, null)} />
-        </ImageOption>
-        <ImagePicker />
+        <ImagePicker samples={samples.sampleImg} onChange={setSampleImage} />
       </CustomContainer>
-      <Margin size="40" />
+
+      <Margin size="80" />
 
       <Link href={"/donorDetail"}>
         <StyledButton backgroundColor="#9B9B9B" width="280" height="50">
