@@ -5,10 +5,22 @@ import Button from "../component/Button";
 import Margin from "../component/Margin";
 import Input from "../component/Input";
 import styled, { css } from "styled-components";
+import { keyframes } from "styled-components";
 import Link from "next/link";
+
+const heartBeat = keyframes`
+  0% { transform: translate(10px, 10px) scale(1); }
+  25% { transform: translate(10px, 10px) scale(1); }
+  30% { transform: translate(10px, 10px) scale(1.4); }
+  50% { transform: translate(10px, 10px) scale(1.2); }
+  70% { transform: translate(10px, 10px) scale(1.4); }
+  90% { transform: translate(10px, 10px) scale(1); }
+  100% { transform:translate(10px, 10px) scale(1); }
+`;
 
 const LogoImage = styled.img`
   height: 100px;
+  animation: ${heartBeat} 2s linear infinite;
 `;
 
 const StyledMargin = styled(Margin)``;
@@ -49,7 +61,7 @@ export default function Login() {
     <Layout>
       <Margin size="100" />
       <LogoImage src="/login/main-icon.svg" />
-      <Margin size="20" />
+      <Margin size="50" />
       <StyledInput
         id
         placeholder="전화번호 (010XXXXXXXX)"
