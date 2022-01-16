@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { React, useState } from "react";
 import Layout from "../component/Layout";
 import Typography from "../component/Typography";
 import Button from "../component/Button";
@@ -36,6 +36,15 @@ const StyledButton = styled(Button)`
   }
 `;
 
+const BackBtn = styled(Button)`
+  border: none;
+`;
+
+const BackButton = styled.img`
+  width: 16px;
+  cursor: pointer;
+`;
+
 export default function Join() {
   const [content, setContent] = useState("");
   const [phone, setPhone] = useState("");
@@ -44,7 +53,6 @@ export default function Join() {
 
   return (
     <Layout>
-      {" "}
       <Margin size="40" />
       <StyledTitle>
         <LineMargin size="3" />
