@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { React, useState } from "react";
 import Layout from "../component/Layout";
 import Typography from "../component/Typography";
 import Button from "../component/Button";
 import Margin from "../component/Margin";
 import Input from "../component/Input";
 import styled, { css } from "styled-components";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const LineMargin = styled(Margin)`
   background-color: #df2a19;
@@ -36,15 +38,48 @@ const StyledButton = styled(Button)`
   }
 `;
 
+const BackBtn = styled(Button)`
+  border: none;
+`;
+
+const BackButton = styled.img`
+  width: 16px;
+  cursor: pointer;
+`;
+
 export default function Join() {
   const [content, setContent] = useState("");
   const [phone, setPhone] = useState("");
   const [bloodtype, setBloodtype] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const requestJoin = () => {
+    axios(`https://api-dev.blov.us/register`, {
+      method: "POST",
+      crossDomain: true,
+      header: {
+        "content-type": "application/json",
+      },
+      data: {
+        name: content,
+        phone_number: phone,
+        blood_type: bloodtype,
+        password: password,
+      },
+    })
+      .then(() => {
+        console.log("회원가입에 성공했습니다.");
+        router.push("/login");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("회원가입에 성공했습니다.");
+      });
+  };
 
   return (
     <Layout>
-      {" "}
       <Margin size="40" />
       <StyledTitle>
         <LineMargin size="3" />
@@ -85,7 +120,12 @@ export default function Join() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <StyledMargin size="60" />
-      <StyledButton backgroundColor="red" width="280" height="50">
+      <StyledButton
+        backgroundColor="red"
+        width="280"
+        height="50"
+        onClick={requestJoin}
+      >
         <Typography color="#fff" size="16">
           회원가입
         </Typography>
