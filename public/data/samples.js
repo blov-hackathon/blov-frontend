@@ -1,8 +1,8 @@
-import sample1 from "../sample/sample1-img.svg";
-import sample2 from "../sample/sample2-img.svg";
-import sample3 from "../sample/sample3-img.svg";
-import sample4 from "../sample/sample4-img.svg";
-import sample5 from "../sample/sample5-img.svg";
+import sample1 from "../images/sample1-img.svg";
+import sample2 from "../images/sample2-img.svg";
+import sample3 from "../images/sample3-img.svg";
+import sample4 from "../images/sample4-img.svg";
+import sample5 from "../images/sample5-img.svg";
 
 const sampleImg = [
   {

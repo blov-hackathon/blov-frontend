@@ -32,7 +32,7 @@ const sampleButton = (image, selected) => css`
   border-radius: 35px;
   border: 5px solid ${selected ? "#0062AD" : "#ffffff"};
   background-color: #ec8585;
-  background-image: url(${image});
+  background-image: url(${image.src});
   background-size: cover;
   background-position: center;
   cursor: pointer;
