@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Typography from "../component/Typography";
 import { useRouter } from "next/router";
 import Button from "../component/Button";
+import _ from "lodash";
 
 const TitleWrapper = styled.div`
   position: sticky;
@@ -75,16 +76,6 @@ const DeliveryInfo = styled.div`
   align-items: center;
 `;
 
-const DotWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Dot = styled.img`
-  width: 60%;
-  height: 7px;
-`;
-
 const StyledName = styled(Typography)`
   font-weight: bold;
   color: #000;
@@ -119,6 +110,58 @@ const FooterImage = styled.img`
 
 export default function DeliveryList() {
   const router = useRouter();
+
+  const deliveryData = [
+    {
+      senderName: "김멋사",
+      receiverName: "박멋사",
+      date: "2021.01.19",
+      bloodKind: "전혈 320ML",
+    },
+    {
+      senderName: "박멋사",
+      receiverName: "김멋사",
+      date: "2021.01.19",
+      bloodKind: "전혈 320ML",
+    },
+    {
+      senderName: "박멋사",
+      receiverName: "송멋사",
+      date: "2021.01.19",
+      bloodKind: "전혈 320ML",
+    },
+    {
+      senderName: "한멋사",
+      receiverName: "김멋사",
+      date: "2021.01.19",
+      bloodKind: "전혈 320ML",
+    },
+    {
+      senderName: "이멋사",
+      receiverName: "박멋사",
+      date: "2021.01.19",
+      bloodKind: "전혈 320ML",
+    },
+    {
+      senderName: "신멋사",
+      receiverName: "박멋사",
+      date: "2021.01.19",
+      bloodKind: "전혈 320ML",
+    },
+    {
+      senderName: "박멋사",
+      receiverName: "손멋사",
+      date: "2021.01.19",
+      bloodKind: "전혈 320ML",
+    },
+    {
+      senderName: "손멋사",
+      receiverName: "박멋사",
+      date: "2021.01.19",
+      bloodKind: "전혈 320ML",
+    },
+  ];
+
   return (
     <>
       <TitleWrapper>
@@ -132,344 +175,51 @@ export default function DeliveryList() {
         <div />
       </TitleWrapper>
       <Layout>
-        <ElementWrapper
-          justify="space-between"
-          onClick={() => router.push("/donorDetail")}
-        >
-          <BackCircle rgba="rgba(255, 195, 190, 0.32)">
-            <Arrow src="delivery/in-arrow.svg" width="50" />
-          </BackCircle>
-          <ContentWrapper width="60">
-            <DeliveryInfo>
-              <StyledName size="18">김멋사</StyledName>
-              <Arrow src="delivery/delivery-arrow.svg" width="10" />
-              <StyledName size="18">박멋사</StyledName>
-            </DeliveryInfo>
-            <DeliveryInfo>
-              <StyledText size="15" color="#c1c1c1">
-                2021.01.19
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                {" "}
-                |{" "}
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                전혈 320ML
-              </StyledText>
-            </DeliveryInfo>
-          </ContentWrapper>
-          <DotWrapper>
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-          </DotWrapper>
-        </ElementWrapper>
-        <Bar src="delivery/row-bar.svg" />
-
-        <ElementWrapper
-          justify="space-between"
-          onClick={() => router.push("/donorDetail")}
-        >
-          <BackCircle rgba="rgba(176, 191, 242, 0.32)">
-            <Arrow src="delivery/out-arrow.svg" width="50" />
-          </BackCircle>
-          <ContentWrapper width="60">
-            <DeliveryInfo>
-              <StyledName size="18">김멋사</StyledName>
-              <Arrow src="delivery/delivery-arrow.svg" width="10" />
-              <StyledName size="18">박멋사</StyledName>
-            </DeliveryInfo>
-            <DeliveryInfo>
-              <StyledText size="15" color="#c1c1c1">
-                2021.01.19
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                {" "}
-                |{" "}
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                전혈 320ML
-              </StyledText>
-            </DeliveryInfo>
-          </ContentWrapper>
-          <DotWrapper>
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-          </DotWrapper>
-        </ElementWrapper>
-        <Bar src="delivery/row-bar.svg" />
-
-        <ElementWrapper
-          justify="space-between"
-          onClick={() => router.push("/donorDetail")}
-        >
-          <BackCircle rgba="rgba(255, 195, 190, 0.32)">
-            <Arrow src="delivery/in-arrow.svg" width="50" />
-          </BackCircle>
-          <ContentWrapper width="60">
-            <DeliveryInfo>
-              <StyledName size="18">김멋사</StyledName>
-              <Arrow src="delivery/delivery-arrow.svg" width="10" />
-              <StyledName size="18">박멋사</StyledName>
-            </DeliveryInfo>
-            <DeliveryInfo>
-              <StyledText size="15" color="#c1c1c1">
-                2021.01.19
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                {" "}
-                |{" "}
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                전혈 320ML
-              </StyledText>
-            </DeliveryInfo>
-          </ContentWrapper>
-          <DotWrapper>
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-          </DotWrapper>
-        </ElementWrapper>
-        <Bar src="delivery/row-bar.svg" />
-
-        <ElementWrapper
-          justify="space-between"
-          onClick={() => router.push("/donorDetail")}
-        >
-          <BackCircle rgba="rgba(176, 191, 242, 0.32)">
-            <Arrow src="delivery/out-arrow.svg" width="50" />
-          </BackCircle>
-          <ContentWrapper width="60">
-            <DeliveryInfo>
-              <StyledName size="18">김멋사</StyledName>
-              <Arrow src="delivery/delivery-arrow.svg" width="10" />
-              <StyledName size="18">박멋사</StyledName>
-            </DeliveryInfo>
-            <DeliveryInfo>
-              <StyledText size="15" color="#c1c1c1">
-                2021.01.19
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                {" "}
-                |{" "}
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                전혈 320ML
-              </StyledText>
-            </DeliveryInfo>
-          </ContentWrapper>
-          <DotWrapper>
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-          </DotWrapper>
-        </ElementWrapper>
-        <Bar src="delivery/row-bar.svg" />
-
-        <ElementWrapper
-          justify="space-between"
-          onClick={() => router.push("/donorDetail")}
-        >
-          <BackCircle rgba="rgba(255, 195, 190, 0.32)">
-            <Arrow src="delivery/in-arrow.svg" width="50" />
-          </BackCircle>
-          <ContentWrapper width="60">
-            <DeliveryInfo>
-              <StyledName size="18">김멋사</StyledName>
-              <Arrow src="delivery/delivery-arrow.svg" width="10" />
-              <StyledName size="18">박멋사</StyledName>
-            </DeliveryInfo>
-            <DeliveryInfo>
-              <StyledText size="15" color="#c1c1c1">
-                2021.01.19
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                {" "}
-                |{" "}
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                전혈 320ML
-              </StyledText>
-            </DeliveryInfo>
-          </ContentWrapper>
-          <DotWrapper>
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-          </DotWrapper>
-        </ElementWrapper>
-        <Bar src="delivery/row-bar.svg" />
-
-        <ElementWrapper
-          justify="space-between"
-          onClick={() => router.push("/donorDetail")}
-        >
-          <BackCircle rgba="rgba(176, 191, 242, 0.32)">
-            <Arrow src="delivery/out-arrow.svg" width="50" />
-          </BackCircle>
-          <ContentWrapper width="60">
-            <DeliveryInfo>
-              <StyledName size="18">김멋사</StyledName>
-              <Arrow src="delivery/delivery-arrow.svg" width="10" />
-              <StyledName size="18">박멋사</StyledName>
-            </DeliveryInfo>
-            <DeliveryInfo>
-              <StyledText size="15" color="#c1c1c1">
-                2021.01.19
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                {" "}
-                |{" "}
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                전혈 320ML
-              </StyledText>
-            </DeliveryInfo>
-          </ContentWrapper>
-          <DotWrapper>
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-          </DotWrapper>
-        </ElementWrapper>
-        <Bar src="delivery/row-bar.svg" />
-
-        <ElementWrapper
-          justify="space-between"
-          onClick={() => router.push("/donorDetail")}
-        >
-          <BackCircle rgba="rgba(255, 195, 190, 0.32)">
-            <Arrow src="delivery/in-arrow.svg" width="50" />
-          </BackCircle>
-          <ContentWrapper width="60">
-            <DeliveryInfo>
-              <StyledName size="18">김멋사</StyledName>
-              <Arrow src="delivery/delivery-arrow.svg" width="10" />
-              <StyledName size="18">박멋사</StyledName>
-            </DeliveryInfo>
-            <DeliveryInfo>
-              <StyledText size="15" color="#c1c1c1">
-                2021.01.19
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                {" "}
-                |{" "}
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                전혈 320ML
-              </StyledText>
-            </DeliveryInfo>
-          </ContentWrapper>
-          <DotWrapper>
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-          </DotWrapper>
-        </ElementWrapper>
-        <Bar src="delivery/row-bar.svg" />
-
-        <ElementWrapper
-          justify="space-between"
-          onClick={() => router.push("/donorDetail")}
-        >
-          <BackCircle rgba="rgba(176, 191, 242, 0.32)">
-            <Arrow src="delivery/out-arrow.svg" width="50" />
-          </BackCircle>
-          <ContentWrapper width="60">
-            <DeliveryInfo>
-              <StyledName size="18">김멋사</StyledName>
-              <Arrow src="delivery/delivery-arrow.svg" width="10" />
-              <StyledName size="18">박멋사</StyledName>
-            </DeliveryInfo>
-            <DeliveryInfo>
-              <StyledText size="15" color="#c1c1c1">
-                2021.01.19
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                {" "}
-                |{" "}
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                전혈 320ML
-              </StyledText>
-            </DeliveryInfo>
-          </ContentWrapper>
-          <DotWrapper>
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-          </DotWrapper>
-        </ElementWrapper>
-        <Bar src="delivery/row-bar.svg" />
-
-        <ElementWrapper
-          justify="space-between"
-          onClick={() => router.push("/donorDetail")}
-        >
-          <BackCircle rgba="rgba(255, 195, 190, 0.32)">
-            <Arrow src="delivery/in-arrow.svg" width="50" />
-          </BackCircle>
-          <ContentWrapper width="60">
-            <DeliveryInfo>
-              <StyledName size="18">김멋사</StyledName>
-              <Arrow src="delivery/delivery-arrow.svg" width="10" />
-              <StyledName size="18">박멋사</StyledName>
-            </DeliveryInfo>
-            <DeliveryInfo>
-              <StyledText size="15" color="#c1c1c1">
-                2021.01.19
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                {" "}
-                |{" "}
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                전혈 320ML
-              </StyledText>
-            </DeliveryInfo>
-          </ContentWrapper>
-          <DotWrapper>
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-          </DotWrapper>
-        </ElementWrapper>
-        <Bar src="delivery/row-bar.svg" />
-
-        <ElementWrapper
-          justify="space-between"
-          onClick={() => router.push("/donorDetail")}
-        >
-          <BackCircle rgba="rgba(176, 191, 242, 0.32)">
-            <Arrow src="delivery/out-arrow.svg" width="50" />
-          </BackCircle>
-          <ContentWrapper width="60">
-            <DeliveryInfo>
-              <StyledName size="18">김멋사</StyledName>
-              <Arrow src="delivery/delivery-arrow.svg" width="10" />
-              <StyledName size="18">박멋사</StyledName>
-            </DeliveryInfo>
-            <DeliveryInfo>
-              <StyledText size="15" color="#c1c1c1">
-                2021.01.19
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                {" "}
-                |{" "}
-              </StyledText>
-              <StyledText size="15" color="#c1c1c1">
-                전혈 320ML
-              </StyledText>
-            </DeliveryInfo>
-          </ContentWrapper>
-          <DotWrapper>
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-            <Dot src="delivery/dot.svg" />
-          </DotWrapper>
-        </ElementWrapper>
+        {_.map(deliveryData, (data) => (
+          <>
+            <ElementWrapper
+              justify="space-around"
+              onClick={() => router.push("/donorDetail")}
+            >
+              <BackCircle
+                rgba={
+                  data.receiverName == "박멋사"
+                    ? "rgba(255, 195, 190, 0.32)"
+                    : "rgba(176, 191, 242, 0.32)"
+                }
+              >
+                <Arrow
+                  src={
+                    data.receiverName == "박멋사"
+                      ? "delivery/in-arrow.svg"
+                      : "delivery/out-arrow.svg"
+                  }
+                  width="50"
+                />
+              </BackCircle>
+              <ContentWrapper width="60">
+                <DeliveryInfo>
+                  <StyledName size="18">{data.senderName}</StyledName>
+                  <Arrow src="delivery/delivery-arrow.svg" width="10" />
+                  <StyledName size="18">{data.receiverName}</StyledName>
+                </DeliveryInfo>
+                <DeliveryInfo>
+                  <StyledText size="15" color="#c1c1c1">
+                    {data.date}
+                  </StyledText>
+                  <StyledText size="15" color="#c1c1c1">
+                    {" "}
+                    |{" "}
+                  </StyledText>
+                  <StyledText size="15" color="#c1c1c1">
+                    {data.bloodKind}
+                  </StyledText>
+                </DeliveryInfo>
+              </ContentWrapper>
+            </ElementWrapper>
+            <Bar src="delivery/row-bar.svg" />
+          </>
+        ))}
       </Layout>
       <FooterWrapper>
         <ElementWrapper justify="space-around">
