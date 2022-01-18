@@ -32,7 +32,7 @@ const FooterWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 370px;
+    width: 375px;
     height: 90px;
     box-shadow: 3px -3px 8px #00000029;
     z-index: 5;
@@ -131,7 +131,7 @@ function QRcode() {
             <BlackScreen>
                 <QrScreen>
                     <TitleFlex>
-                        <Link href="QRcode">
+                        <Link href="#">
                             <BackButton
                                 src="/temp/temp-close.svg"
                                 onClick={() => setActive((active) => !active)}
@@ -157,8 +157,30 @@ export default function Footer() {
             <ElementWrapper justify="space-around">
                 <ContentWrapper
                     width="47"
-                    onClick={() => router.push("/QRcode")}
+                    onClick={() => setActive((active) => !active)}
                 >
+                    {
+                        <BlackScreen active={active}>
+                            <QrScreen>
+                                <TitleFlex>
+                                    <Link href="#">
+                                        <BackButton
+                                            src="/temp/temp-close.svg"
+                                            onClick={() =>
+                                                setActive((active) => !active)
+                                            }
+                                        />
+                                    </Link>
+                                </TitleFlex>
+                                <QrImg src="https://chart.googleapis.com/chart?chs=500x500&chld=M%7C1&cht=qr&chl={123}&choe=UTF-8" />
+                                <DotLine></DotLine>
+                                <Margin size="20" />
+                                <QrTypography>
+                                    QEWTESGRGAREHGERSHSERAasdfadsasdfdsafasSFDSAT
+                                </QrTypography>
+                            </QrScreen>
+                        </BlackScreen>
+                    }
                     <FooterImage src="delivery/wallet-address.svg" />
                     <StyledText size="15" color="#878787">
                         헌혈지갑 주소
