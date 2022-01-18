@@ -9,12 +9,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import samples from "../public/data/samples";
 import ImagePicker from "../component/ImagePicker";
+import Canvas from "../component/Canvas";
+import TextField from "../component/TextField";
 
 export default function Custom1() {
   const [enable, setEnable] = useState(true);
   const router = useRouter();
 
-  const [sampleImage, setSampleImage] = useState();
+  const [sampleItem, setSampleItem] = useState();
+  const [initial, setInitial] = useState("");
 
   const StyledButton = styled(Button)`
     border-radius: 100px;
@@ -29,18 +32,6 @@ export default function Custom1() {
   const BackButton = styled.img`
     width: 16px;
     cursor: pointer;
-  `;
-
-  const CardImage = styled.img`
-    width: 200px;
-    box-shadow: 5px 5px 20px #e1e1e1;
-    border-radius: 18px;
-    border: 1px solid #d4d4d4;
-  `;
-
-  const SelectImage = styled(CardImage)`
-    opacity: 0.28;
-    position: relative;
   `;
 
   const Grid = styled.div`
@@ -64,20 +55,6 @@ export default function Custom1() {
     text-align: center;
   `;
 
-  const CardContainer = styled.div`
-    position: relative;
-    height: 320px;
-    width: 100%;
-    text-align: center;
-  `;
-
-  const OriginCard = styled.img`
-    width: 200px;
-    box-shadow: 5px 5px 20px #e1e1e1;
-    border-radius: 18px;
-    border: 1px solid #d4d4d4;
-  `;
-
   const CustomContainer = styled.div`
     position: relative;
     height: 80px;
@@ -91,34 +68,47 @@ export default function Custom1() {
     text-align: center;
   `;
 
+  const onInitialChange = (e) => {
+    const { value } = e.target;
+    if (value.length <= 20) {
+      setInitial(value.replace(/[^\\!-z]/gi, "").toUpperCase());
+    }
+  };
+
   return (
     <Layout>
       <TitleGrid>
         <BackBtn onClick={() => router.push("/donorDetail")}>
           <BackButton src="/temp/temp-back.svg" />
         </BackBtn>
-        <TitleTypography>나만의 헌혈증 꾸미기 1/2</TitleTypography>
+        <TitleTypography>나만의 헌혈증 꾸미기</TitleTypography>
       </TitleGrid>
 
       <Margin size="20" />
 
-      <CardContainer>
-        <OriginCard src="/temp/temp-card.svg" />
-      </CardContainer>
+      {/* <OriginCard src="/temp/temp-card.svg" /> */}
+      <Canvas sampleItem={sampleItem} />
 
-      <Margin size="40" />
+      <Margin size="20" />
 
       <CustomContainer>
         <SubText>이미지 선택하기</SubText>
-        <ImagePicker samples={samples.sampleImg} onChange={setSampleImage} />
+        <ImagePicker samples={samples.sampleImg} onChange={setSampleItem} />
       </CustomContainer>
 
       <Margin size="80" />
 
+      <CustomContainer>
+        <SubText>한 줄 메세지</SubText>
+        <TextField value={initial} onChange={onInitialChange} />
+      </CustomContainer>
+
+      <Margin size="40" />
+
       <Link href={"/donorDetail"}>
         <StyledButton backgroundColor="#9B9B9B" width="280" height="50">
           <Typography color="#fff" size="16">
-            다음으로
+            헌혈증 꾸미기 완료
           </Typography>
         </StyledButton>
       </Link>

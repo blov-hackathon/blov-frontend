@@ -5,7 +5,10 @@ import { fabric } from "fabric";
 
 const wrapper = css`
   position: relative;
-  width: 100%;
+  width: 80%;
+  /* background-color: black; */
+  background-image: url("/temp/temp-card.svg");
+
   &:after {
     content: "";
     display: block;
@@ -19,14 +22,14 @@ const wrapper = css`
   }
 `;
 
-const CanvasCard = ({ topItem }) => {
+const Canvas = ({ sampleItem }) => {
   const [canvas, setCanvas] = useState("");
 
   const initCanvas = () =>
     new fabric.Canvas("canvas", {
-      height: 1080,
-      width: 1080,
-      backgroundColor: "#ffffff",
+      height: 220,
+      width: 140,
+      backgroundColor: "none",
       selection: false,
     });
 
@@ -57,12 +60,13 @@ const CanvasCard = ({ topItem }) => {
 
       canvas.clear();
 
-      // 상단 아이템 추가
-      if (topItem) await addImage(topItem?.image, 0, 0);
+      // 이미지 추가
+      if (sampleItem) await addImage(sampleItem?.image, 10, 40);
+      console.log(sampleItem);
     };
 
     doAsync();
-  }, [canvas, topItem, addImage]);
+  }, [canvas, sampleItem, addImage]);
 
   return (
     <div css={wrapper}>
@@ -71,12 +75,4 @@ const CanvasCard = ({ topItem }) => {
   );
 };
 
-Canvas.propTypes = {
-  topItem: PropTypes.object,
-};
-
-Canvas.defaultProps = {
-  topItem: null,
-};
-
-export default CanvasCard;
+export default Canvas;

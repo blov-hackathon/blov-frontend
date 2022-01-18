@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import _ from "lodash";
 import styled, { css } from "styled-components";
 
@@ -29,9 +28,9 @@ const sampleButton = (image, selected) => css`
   flex-grow: 0;
   flex-shrink: 0;
   height: 70px;
+  border: 3px solid ${selected ? "#0062AD" : "#ffffff"};
   border-radius: 35px;
-  border: 5px solid ${selected ? "#0062AD" : "#ffffff"};
-  background-color: #ec8585;
+  background-color: #fff;
   background-image: url(${image.src});
   background-size: cover;
   background-position: center;
@@ -44,12 +43,13 @@ const ImagePicker = ({ samples, onChange }) => {
 
   useEffect(() => {
     onChange(samples[selected]);
-  }, [samples, selected, onChange]);
+  }, [samples]);
 
   const onClick = (i) => {
     if (selected === i) setSelected(null);
     else setSelected(i);
   };
+
   return (
     <div css={wrapper}>
       {_.map(samples, (sample, i) => (
