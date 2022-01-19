@@ -1,6 +1,7 @@
 import Layout from "../component/Layout";
 import Typography from "../component/Typography";
 import NFT from "../component/NFT";
+import Footer from "../component/Footer";
 import axios from "axios";
 import React, { Component, useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
@@ -129,58 +130,62 @@ export default function Wallet() {
     ];
     const [active, setActive] = useState(false);
     return (
-        <Layout>
-            <Header>
-                <Margin size="30" />
-                <BoldTypography size="24">나의 헌혈지갑</BoldTypography>
-                <Margin size="10" />
-                <div style={Menu}>
-                    <Typography>NFT</Typography>
-                    <Typography>시간순</Typography>
-                </div>
-            </Header>
-            <Margin size="40" />
+        <>
+            <Layout>
+                <Header>
+                    <Margin size="30" />
+                    <BoldTypography size="24">나의 헌혈지갑</BoldTypography>
+                    <Margin size="10" />
+                    <div style={Menu}>
+                        <Typography>NFT</Typography>
+                        <Typography>시간순</Typography>
+                    </div>
+                </Header>
+                <Margin size="40" />
 
-            <Carousel
-                height="390px"
-                width="250px"
-                slidesToShow={1} // 한 번에 보여줄 슬라이드의 개수
-                cellAlign="center"
-                renderCenterLeftControls={({ previousSlide }) => null}
-                renderCenterRightControls={({ nextSlide }) => null}
-                renderBottomCenterControls={() => null}
-            >
-                {_.map(array, (array) => (
-                    <NTFborder>
-                        <NFT data={array} />
-                    </NTFborder>
-                ))}
-            </Carousel>
-            <ClickButton onClick={() => setActive((active) => !active)}>
-                테스트 버튼
-            </ClickButton>
-            {
-                <BlackScreen active={active}>
-                    <QrScreen>
-                        <TitleFlex>
-                            <Link href="#">
-                                <BackButton
-                                    src="/temp/temp-close.svg"
-                                    onClick={() =>
-                                        setActive((active) => !active)
-                                    }
-                                />
-                            </Link>
-                        </TitleFlex>
-                        <QrImg src="https://chart.googleapis.com/chart?chs=500x500&chld=M%7C1&cht=qr&chl={123}&choe=UTF-8" />
-                        <DotLine></DotLine>
-                        <Margin size="20" />
-                        <QrTypography>
-                            QEWTESGRGAREHGERSHSERAasdfadsasdfdsafasSFDSAT
-                        </QrTypography>
-                    </QrScreen>
-                </BlackScreen>
-            }
-        </Layout>
+                <Carousel
+                    height="390px"
+                    width="250px"
+                    slidesToShow={1} // 한 번에 보여줄 슬라이드의 개수
+                    cellAlign="center"
+                    renderCenterLeftControls={({ previousSlide }) => null}
+                    renderCenterRightControls={({ nextSlide }) => null}
+                    renderBottomCenterControls={() => null}
+                >
+                    {_.map(array, (array) => (
+                        <NTFborder>
+                            <NFT data={array} />
+                        </NTFborder>
+                    ))}
+                </Carousel>
+            </Layout>
+            <Footer />
+        </>
     );
 }
+/*
+                <ClickButton onClick={() => setActive((active) => !active)}>
+                    테스트 버튼
+                </ClickButton>
+                {
+                    <BlackScreen active={active}>
+                        <QrScreen>
+                            <TitleFlex>
+                                <Link href="#">
+                                    <BackButton
+                                        src="/temp/temp-close.svg"
+                                        onClick={() =>
+                                            setActive((active) => !active)
+                                        }
+                                    />
+                                </Link>
+                            </TitleFlex>
+                            <QrImg src="https://chart.googleapis.com/chart?chs=500x500&chld=M%7C1&cht=qr&chl={123}&choe=UTF-8" />
+                            <DotLine></DotLine>
+                            <Margin size="20" />
+                            <QrTypography>
+                                QEWTESGRGAREHGERSHSERAasdfadsasdfdsafasSFDSAT
+                            </QrTypography>
+                        </QrScreen>
+                    </BlackScreen>
+                }*/
