@@ -88,8 +88,8 @@ export default function Custom1() {
 
       <Margin size="20" />
 
-      {/* <OriginCard src="/temp/temp-card.svg" /> */}
-      <Canvas />
+      {/* <Canvas sampleItem={sampleItem} initial={initial} /> */}
+      <Canvas sampleItem={sampleItem} />
 
       <Margin size="20" />
 
