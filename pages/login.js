@@ -5,7 +5,9 @@ import Button from "../component/Button";
 import Margin from "../component/Margin";
 import Input from "../component/Input";
 import styled, { css } from "styled-components";
+import axios from "axios";
 import { keyframes } from "styled-components";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 const heartBeat = keyframes`
@@ -56,7 +58,30 @@ const StyledTypo = styled(Typography)`
 export default function Login() {
   const [content, setContent] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
+  const requestLogin = () => {
+    axios(`https://api-dev.blov.us/login`, {
+      method: "POST",
+      crossDomain: true,
+      header: {
+        "content-type": "application/json",
+      },
+      data: {
+        phone_number: content,
+        password: password,
+      },
+    })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        console.log("로그인에 성공했습니다.");
+        router.push("/mywallet");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("로그인에 실패했습니다.");
+      });
+  };
   return (
     <Layout>
       <Margin size="100" />
@@ -84,7 +109,7 @@ export default function Login() {
       </StyledCheck>
       <StyledMargin size="60" />
       <StyledButton backgroundColor="red" width="300" height="60">
-        <Typography color="#fff" size="16">
+        <Typography color="#fff" size="16" onClick={requestLogin}>
           로그인
         </Typography>
       </StyledButton>
