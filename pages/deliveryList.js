@@ -111,6 +111,12 @@ const FooterImage = styled.img`
 export default function DeliveryList() {
   const router = useRouter();
 
+  if (typeof window !== "undefined") {
+    const item = localStorage.getItem("token");
+    if (!item) {
+      router.push("/login");
+    }
+  }
   const deliveryData = [
     {
       senderName: "김멋사",

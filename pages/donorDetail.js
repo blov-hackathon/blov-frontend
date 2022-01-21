@@ -8,7 +8,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Footer from "../component/Footer";
 
-
 export default function DonorDetail() {
   const [enable, setEnable] = useState(true);
 
@@ -116,48 +115,52 @@ export default function DonorDetail() {
   }
 
   const router = useRouter();
-
+  if (typeof window !== "undefined") {
+    const item = localStorage.getItem("token");
+    if (!item) {
+      router.push("/login");
+    }
+  }
   return (
-      <>
-    <Layout>
-      <TitleGrid>
-        <BackBtn onClick={() => router.push("/mywallet")}>
-          <BackButton src="/temp/temp-back.svg" />
-        </BackBtn>
-        <TitleTypography>헌혈증 상세보기</TitleTypography>
-      </TitleGrid>
-      <Margin size="60" />
+    <>
+      <Layout>
+        <TitleGrid>
+          <BackBtn onClick={() => router.push("/mywallet")}>
+            <BackButton src="/temp/temp-back.svg" />
+          </BackBtn>
+          <TitleTypography>헌혈증 상세보기</TitleTypography>
+        </TitleGrid>
+        <Margin size="60" />
 
-      <SelectCardImage />
+        <SelectCardImage />
 
-      <Margin size="40" />
+        <Margin size="40" />
 
-      <Grid>
-        <StyledDesc>헌혈일자</StyledDesc>
-        <StyledValue>2021.01.19</StyledValue>
+        <Grid>
+          <StyledDesc>헌혈일자</StyledDesc>
+          <StyledValue>2021.01.19</StyledValue>
 
-        <StyledDesc>헌혈종류</StyledDesc>
-        <StyledValue>전혈 320ML</StyledValue>
+          <StyledDesc>헌혈종류</StyledDesc>
+          <StyledValue>전혈 320ML</StyledValue>
 
-        <StyledDesc>헌혈인</StyledDesc>
-        <StyledValue>김멋사</StyledValue>
+          <StyledDesc>헌혈인</StyledDesc>
+          <StyledValue>김멋사</StyledValue>
 
-        <StyledDesc>생년월일</StyledDesc>
-        <StyledValue>2021.01.19</StyledValue>
+          <StyledDesc>생년월일</StyledDesc>
+          <StyledValue>2021.01.19</StyledValue>
 
-        <StyledDesc>혈액원명</StyledDesc>
-        <StyledValue>인천멋사혈액원</StyledValue>
+          <StyledDesc>혈액원명</StyledDesc>
+          <StyledValue>인천멋사혈액원</StyledValue>
 
-        <StyledDesc>증서번호</StyledDesc>
-        <StyledValue>21-23-456789</StyledValue>
-      </Grid>
+          <StyledDesc>증서번호</StyledDesc>
+          <StyledValue>21-23-456789</StyledValue>
+        </Grid>
 
-      <Margin size="40" />
+        <Margin size="40" />
 
-      <SendButton />
-    </Layout>
-  <Footer />
-</>
-
+        <SendButton />
+      </Layout>
+      <Footer />
+    </>
   );
 }

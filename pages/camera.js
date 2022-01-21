@@ -3,7 +3,8 @@ import Typography from "../component/Typography";
 import Button from "../component/Button";
 import Margin from "../component/Margin";
 import styled, { css } from "styled-components";
-//import QrReader from "react-qr-reader";
+import { useRouter } from "next/router";
+
 import { useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -36,8 +37,17 @@ const StyledButton = styled(Button)`
 
 export default function Camera() {
   const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false });
+  const router = useRouter();
+
   const qrRef = useRef(null);
   const [scanResultCamera, setScanResultCamera] = useState("");
+
+  if (typeof window !== "undefined") {
+    const item = localStorage.getItem("token");
+    if (!item) {
+      router.push("/login");
+    }
+  }
 
   const handleErrorCamera = (error) => {
     console.log("error");
@@ -70,7 +80,6 @@ export default function Camera() {
         />
       </CameraContainer>
       <Margin size="60" />
-
       <StyledButton
         backgroundColor="red"
         width="280"
@@ -81,7 +90,6 @@ export default function Camera() {
           주소를 직접 입력하시겠어요?
         </Typography>
       </StyledButton>
-
     </Layout>
   );
 }

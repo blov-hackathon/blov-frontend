@@ -77,7 +77,10 @@ export default function Join() {
         console.log("회원가입에 성공했습니다.");
       });
   };
-
+  if (typeof window !== "undefined") {
+    const item = localStorage.getItem("myCat");
+    console.log(item);
+  }
   return (
     <Layout>
       <Margin size="40" />
