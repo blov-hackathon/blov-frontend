@@ -24,7 +24,6 @@ const wrapper = css`
 
 const Canvas = ({ sampleItem }) => {
   const [canvas, setCanvas] = useState("");
-
   const initCanvas = () =>
     new fabric.Canvas("canvas", {
       height: 220,
@@ -61,8 +60,8 @@ const Canvas = ({ sampleItem }) => {
       canvas.clear();
 
       // 이미지 추가
+
       if (sampleItem) await addImage(sampleItem?.image, 10, 40);
-      console.log(sampleItem);
     };
 
     doAsync();

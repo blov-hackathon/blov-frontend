@@ -43,7 +43,7 @@ const ImagePicker = ({ samples, onChange }) => {
 
   useEffect(() => {
     onChange(samples[selected]);
-  }, [samples]);
+  }, [selected]);
 
   const onClick = (i) => {
     if (selected === i) setSelected(null);
