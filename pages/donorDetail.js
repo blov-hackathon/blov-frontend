@@ -6,6 +6,8 @@ import Margin from "../component/Margin";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Footer from "../component/Footer";
+
 
 export default function DonorDetail() {
   const [enable, setEnable] = useState(true);
@@ -61,6 +63,7 @@ export default function DonorDetail() {
     color: #000;
     size: 36px;
     text-align: center;
+    padding-top: 10px;
   `;
 
   const StyledDesc = styled(Typography)`
@@ -115,9 +118,10 @@ export default function DonorDetail() {
   const router = useRouter();
 
   return (
+      <>
     <Layout>
       <TitleGrid>
-        <BackBtn onClick={() => router.push("/login")}>
+        <BackBtn onClick={() => router.push("/mywallet")}>
           <BackButton src="/temp/temp-back.svg" />
         </BackBtn>
         <TitleTypography>헌혈증 상세보기</TitleTypography>
@@ -152,5 +156,8 @@ export default function DonorDetail() {
 
       <SendButton />
     </Layout>
+  <Footer />
+</>
+
   );
 }
