@@ -109,12 +109,11 @@ export default function Wallet() {
     useEffect(() => {
         axios.get("/mywallet").then(({ data }) => setNftData(data));
     }, []);
-    const array = [
+    const testArray = [
         {
             name: "이름",
             date: "2022.01.17",
-            nftImage: "이미지",
-            bloodHouse: "혈액원명",
+            bloodHouse: "이미지 없을 때 우항항",
             bloodKind: "전혈 300ML",
             idNumber: "증서번호",
         },
@@ -126,8 +125,15 @@ export default function Wallet() {
             bloodKind: "헌혈종류22",
             idNumber: "증서번호1221",
         },
+        {
+            name: "이름",
+            date: "2022.01.17",
+            nftImage: "이미지122",
+            bloodHouse: "이미지 없을 때 우항항",
+            bloodKind: "전혈 300ML",
+            idNumber: "0000",
+        },
     ];
-    const [active, setActive] = useState(false);
     return (
         <Layout>
             <Header>
@@ -143,44 +149,19 @@ export default function Wallet() {
 
             <Carousel
                 height="390px"
-                width="250px"
+                width="240px"
                 slidesToShow={1} // 한 번에 보여줄 슬라이드의 개수
                 cellAlign="center"
                 renderCenterLeftControls={({ previousSlide }) => null}
                 renderCenterRightControls={({ nextSlide }) => null}
                 renderBottomCenterControls={() => null}
             >
-                {_.map(array, (array) => (
+                {_.map(testArray, (nftData) => (
                     <NTFborder>
-                        <NFT data={array} />
+                        <NFT data={nftData} />
                     </NTFborder>
                 ))}
             </Carousel>
-            <ClickButton onClick={() => setActive((active) => !active)}>
-                테스트 버튼
-            </ClickButton>
-            {
-                <BlackScreen active={active}>
-                    <QrScreen>
-                        <TitleFlex>
-                            <Link href="#">
-                                <BackButton
-                                    src="/temp/temp-close.svg"
-                                    onClick={() =>
-                                        setActive((active) => !active)
-                                    }
-                                />
-                            </Link>
-                        </TitleFlex>
-                        <QrImg src="https://chart.googleapis.com/chart?chs=500x500&chld=M%7C1&cht=qr&chl={123}&choe=UTF-8" />
-                        <DotLine></DotLine>
-                        <Margin size="20" />
-                        <QrTypography>
-                            QEWTESGRGAREHGERSHSERAasdfadsasdfdsafasSFDSAT
-                        </QrTypography>
-                    </QrScreen>
-                </BlackScreen>
-            }
         </Layout>
     );
 }
