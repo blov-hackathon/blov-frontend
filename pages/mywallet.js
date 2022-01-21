@@ -7,6 +7,7 @@ import styled, { css, keyframes } from "styled-components";
 import _ from "lodash";
 import Margin from "../component/Margin";
 import Button from "../component/Button";
+import Footer from "../component/Footer";
 import Carousel from "nuka-carousel";
 import Link from "next/link";
 
@@ -39,32 +40,35 @@ export default function Wallet() {
         { cardImage: "null", cardId: "7896" },
     ];
     return (
-        <Layout>
-            <Header>
-                <Margin size="30" />
-                <BoldTypography size="24">나의 헌혈지갑</BoldTypography>
-                <Margin size="10" />
-                <div style={Menu}>
-                    <Typography>NFT</Typography>
-                </div>
-            </Header>
-            <Margin size="40" />
+        <>
+            <Layout>
+                <Header>
+                    <Margin size="30" />
+                    <BoldTypography size="24">나의 헌혈지갑</BoldTypography>
+                    <Margin size="10" />
+                    <div style={Menu}>
+                        <Typography>NFT</Typography>
+                    </div>
+                </Header>
+                <Margin size="40" />
 
-            <Carousel
-                height="400px"
-                width="240px"
-                slidesToShow={1} // 한 번에 보여줄 슬라이드의 개수
-                cellAlign="center"
-                renderCenterLeftControls={({ previousSlide }) => null}
-                renderCenterRightControls={({ nextSlide }) => null}
-                renderBottomCenterControls={() => null}
-            >
-                {_.map(testArray, (nftData) => (
-                    <NTFborder>
-                        <NFT data={nftData} />
-                    </NTFborder>
-                ))}
-            </Carousel>
-        </Layout>
+                <Carousel
+                    height="400px"
+                    width="240px"
+                    slidesToShow={1} // 한 번에 보여줄 슬라이드의 개수
+                    cellAlign="center"
+                    renderCenterLeftControls={({ previousSlide }) => null}
+                    renderCenterRightControls={({ nextSlide }) => null}
+                    renderBottomCenterControls={() => null}
+                >
+                    {_.map(testArray, (nftData) => (
+                        <NTFborder>
+                            <NFT data={nftData} />
+                        </NTFborder>
+                    ))}
+                </Carousel>
+            </Layout>
+            <Footer />
+        </>
     );
 }
