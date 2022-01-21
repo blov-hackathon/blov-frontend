@@ -8,7 +8,6 @@ import Link from "next/link";
 
 import { useRouter } from "next/router";
 
-
 export default function DonorDetail() {
   const [enable, setEnable] = useState(true);
 
@@ -18,11 +17,9 @@ export default function DonorDetail() {
     cursor: pointer;
   `;
 
-
   const BackBtn = styled(Button)`
     border: none;
   `;
-
 
   const BackButton = styled.img`
     width: 16px;
@@ -82,8 +79,14 @@ export default function DonorDetail() {
     size: 32px;
   `;
 
-
   const router = useRouter();
+
+  if (typeof window !== "undefined") {
+    const item = localStorage.getItem("token");
+    if (!item) {
+      router.push("/login");
+    }
+  }
 
   return (
     <Layout>
