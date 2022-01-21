@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import axios from "axios";
+import { useRouter } from "next/router";
 import Typography from "../Typography";
 import Margin from "../Margin";
 
@@ -11,7 +12,7 @@ const StyledTypography = styled(Typography)`
 `;
 
 const NFTstyle = styled.div`
-    height: 360px;
+    height: 395px;
     width: 240px;
     border: solid 1px lightgray;
     border-radius: 18px;
@@ -39,15 +40,27 @@ const NFTfooter = styled.div`
     border-bottom-right-radius: 18px;
 `;
 
-const NFTimagebox = styled.div`
+const NFTimageboxGold = styled.div`
     height: 160px;
     width: 240px;
     // background-color: gray;
 `;
 
+const NFTimagebox = styled.div`
+    height: 395px;
+    width: 240px;
+    position: absolute;
+    z-index: 1;
+    border-radius: 18px;
+`;
 const NFTimage = styled.img`
     height: 150px;
     width: 240px;
+`;
+const NFTimageSource = styled.img`
+    height: 395px;
+    width: 240px;
+    border-radius: 18px;
 `;
 
 const LogoImage = styled.img`
@@ -58,11 +71,17 @@ const LogoImage = styled.img`
 `;
 
 const ShareLogo = styled.img`
-    margin-top: 15px;
-    float: right;
-    margin-right: 20px;
-    margin-bottom: 10px;
     height: 18px;
+`;
+
+const ShareLogoBox = styled.div`
+    margin-top: 15px;
+    margin-left: 200px;
+    float: right;
+    width: 19px;
+    height: 19px;
+    z-index: 5;
+    position: absolute;
 `;
 
 function NFTbegin() {
@@ -119,20 +138,38 @@ function NFTgold() {
 }
 
 export default function NFT(data) {
+    const router = useRouter();
     const [nftData, setNftData] = useState(data.data);
     console.log(data);
-    if (!nftData.nftImage) {
-        // 이미지 넘어온 거 없음
+    if (!nftData.cardImage) {
+        // 이미지 넘어온 s거 없음
         return <NFTbegin />;
-    } else if (nftData.idNumber == "0000") {
+    } else if (nftData.cardId == "0000") {
         // 특정 case (금장)
         return <NFTgold />;
     }
     return (
         // 일반 case
         <NFTstyle>
-            <Typography>대충 NFT 이미지 들어갈 곳</Typography>
-            <ShareLogo src="/mywallet/share-icon.svg" />
+            <NFTimagebox
+                onClick={() => {
+                    nftData.cardImage == "null"
+                        ? router.push("/custom1")
+                        : router.push("/donorDetail");
+                }}
+            >
+                <NFTimageSource
+                    src={
+                        nftData.cardImage != "null"
+                            ? nftData.cardImage
+                            : `/mywallet/test-img-default.png`
+                    }
+                />
+                <Margin size="270" />
+            </NFTimagebox>
+            <ShareLogoBox onClick={() => router.push("/")}>
+                <ShareLogo src="/mywallet/share-icon.svg" />
+            </ShareLogoBox>
         </NFTstyle>
     );
 }
