@@ -119,13 +119,18 @@ export default function NFT(data) {
     console.log(data);
     const nftRef = useRef();
 
+        if (isActive === true)
+                setIsActive(false);
+            }, 2000);
+    });
+
     const handleDownloadNFT = () => {
         console.log("done");
         const myNft = nftRef.current;
         domtoimage.toBlob(myNft).then((blob) => {
             saveAs(blob, "my_NFT_blood_donation_from_BLOV.png");
         });
-        toast("저장 완료!\n내 헌혈증을 공유해보세요", {
+        /*toast("저장 완료!\n내 헌혈증을 공유해보세요", {
             position: "bottom-center",
             autoClose: 2000,
             hideProgressBar: true,
@@ -133,7 +138,7 @@ export default function NFT(data) {
             pauseOnHover: true,
             draggable: false,
             progress: 0,
-        });
+        });*/
     };
 
     if (nftData.cardId == "0000") {
@@ -160,7 +165,7 @@ export default function NFT(data) {
                 />
             </NFTimagebox>
             <Margin size="270" />
-            <ShareLogoBox onClick={handleDownloadNFT}>
+            <ShareLogoBox onClick={(handleDownloadNFT, setIsActive(true))}>
                 {" "}
                 <ShareLogo src="/mywallet/share-icon.svg" />
                 <ToastContainer />
