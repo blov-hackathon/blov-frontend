@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import axios from "axios";
+import { useRouter } from "next/router";
 import Typography from "../Typography";
 import Margin from "../Margin";
 
@@ -11,10 +12,18 @@ const StyledTypography = styled(Typography)`
 `;
 
 const NFTstyle = styled.div`
+    height: 395px;
+    width: 240px;
+    border: solid 1px lightgray;
+    border-radius: 18px;
+`;
+
+const NFTmuted = styled.div`
     height: 360px;
     width: 240px;
     border: solid 1px lightgray;
     border-radius: 18px;
+    background-color: lightgray;
 `;
 
 const NFTbackground = styled.div`
@@ -24,22 +33,34 @@ const NFTbackground = styled.div`
 
 const NFTfooter = styled.div`
     height: 80px;
-    background-color: #df2a19;
+    background-color: ${(props) => (props.color ? props.color : "#df2a19")};
     vertical-align: bottom;
     text-align: right;
     border-bottom-left-radius: 18px;
     border-bottom-right-radius: 18px;
 `;
 
-const NFTimagebox = styled.div`
+const NFTimageboxGold = styled.div`
     height: 160px;
     width: 240px;
     // background-color: gray;
 `;
 
+const NFTimagebox = styled.div`
+    height: 395px;
+    width: 240px;
+    position: absolute;
+    z-index: 1;
+    border-radius: 18px;
+`;
 const NFTimage = styled.img`
     height: 150px;
     width: 240px;
+`;
+const NFTimageSource = styled.img`
+    height: 395px;
+    width: 240px;
+    border-radius: 18px;
 `;
 
 const LogoImage = styled.img`
@@ -50,57 +71,105 @@ const LogoImage = styled.img`
 `;
 
 const ShareLogo = styled.img`
-    margin-top: 15px;
-    float: right;
-    margin-right: 20px;
-    margin-bottom: 10px;
     height: 18px;
 `;
 
-export default function NFT(data) {
-    const [nftData, setNftData] = useState(data.data);
-    console.log(data);
+const ShareLogoBox = styled.div`
+    margin-top: 15px;
+    margin-left: 200px;
+    float: right;
+    width: 19px;
+    height: 19px;
+    z-index: 5;
+    position: absolute;
+`;
+
+function NFTbegin() {
     return (
         <NFTstyle>
             <Margin size="15" />
-            <StyledTypography size="17">
-                {nftData.date ? nftData.date : ""}
-            </StyledTypography>
+            <StyledTypography size="17"></StyledTypography>
             <LogoImage src="/login/main-icon.svg" />
             <NFTbackground>
-                <NFTimagebox>
-                    <NFTimage src="#" />
-                </NFTimagebox>
-                <StyledTypography size="16">
-                    {nftData.bloodHouse ? nftData.bloodHouse : ""}
+                <Margin size="50" />
+                <StyledTypography size="20" color="">
+                    BLOV가 처음이시네요!
+                    <Margin size="30" />
+                    <StyledTypography size="15">
+                        지금 바로
+                        <br />
+                        나만의 전자헌혈증을
+                        <br />
+                        만들어보세요
+                    </StyledTypography>
                 </StyledTypography>
-                <StyledTypography size="28">
-                    {nftData.bloodKind ? nftData.bloodKind : ""}
-                </StyledTypography>
-                <ShareLogo src="/mywallet/share-icon.svg" />
                 <Margin size="20" />
             </NFTbackground>
             <NFTfooter>
                 <Margin size="40" />
-                <StyledTypography color="white">
-                    {nftData.idNumber ? nftData.idNumber : ""}
-                </StyledTypography>
+                <StyledTypography color="white"></StyledTypography>
             </NFTfooter>
         </NFTstyle>
     );
 }
 
-/*
-useEffect로 axios로 받아서
-get으로 받음
-2번
-로그인했는지받고
-데이터받고->useState
-
-<Typography>{데이터.날짜}</Typography>
+function NFTgold() {
+    return (
+        <NFTstyle>
+            <Margin size="15" />
+            <StyledTypography size="17"></StyledTypography>
             <LogoImage src="/login/main-icon.svg" />
-            <Typography>{데이터.혈액원}</Typography>
-            <Typography>{데이터.혈액종류}</Typography>
-            <Typography>{데이터.헌혈증번호}</Typography>//
-*/
-//<LogoImage src="/login/main-icon.svg" />
+            <NFTbackground>
+                <Margin size="180" />
+                <StyledTypography size="15" color="#FFCC00">
+                    영예의 금장
+                </StyledTypography>
+                <StyledTypography size="24" color="#FFCC00">
+                    헌혈 10회 달성!
+                </StyledTypography>
+                <ShareLogo src="/mywallet/share-icon-gold.svg" />
+            </NFTbackground>
+            <NFTfooter color="#FFCC00">
+                <Margin size="40" />
+                <StyledTypography color="white">01-22-516</StyledTypography>
+            </NFTfooter>
+        </NFTstyle>
+    );
+}
+
+export default function NFT(data) {
+    const router = useRouter();
+    const [nftData, setNftData] = useState(data.data);
+    console.log(data);
+    if (!nftData.cardImage) {
+        // 이미지 넘어온 s거 없음
+        return <NFTbegin />;
+    } else if (nftData.cardId == "0000") {
+        // 특정 case (금장)
+        return <NFTgold />;
+    }
+    return (
+        // 일반 case
+        <NFTstyle>
+            <NFTimagebox
+                onClick={() => {
+                    nftData.cardImage == "null"
+                        ? router.push("/custom1")
+                        : router.push("/donorDetail");
+                }}
+            >
+                <NFTimageSource
+                    src={
+                        nftData.cardImage != "null"
+                            ? nftData.cardImage
+                            : `/mywallet/test-img-default.png`
+                    }
+                />
+                <Margin size="270" />
+            </NFTimagebox>
+            <ShareLogoBox onClick={() => router.push("/")}>
+                <ShareLogo src="/mywallet/share-icon.svg" />
+            </ShareLogoBox>
+        </NFTstyle>
+    );
+}
