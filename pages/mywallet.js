@@ -64,10 +64,6 @@ export default function Wallet() {
       });
   }, [token]);
 
-  const testArray = [
-    { cardImage: "/mywallet/test-img.png", cardId: "0123" },
-    { cardImage: "null", cardId: "7896" },
-  ];
   return (
     <>
       <Layout>
@@ -90,7 +86,7 @@ export default function Wallet() {
           renderCenterRightControls={({ nextSlide }) => null}
           renderBottomCenterControls={() => null}
         >
-          {_.map(testArray, (nftData) => (
+          {_.map(cardList, (nftData) => (
             <NTFborder>
               <NFT data={nftData} />
             </NTFborder>
