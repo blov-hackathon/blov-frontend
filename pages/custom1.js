@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../component/Layout";
 import Typography from "../component/Typography";
 import Button from "../component/Button";
@@ -11,62 +11,61 @@ import samples from "../public/data/samples";
 import ImagePicker from "../component/ImagePicker";
 import Canvas from "../component/Canvas";
 import TextField from "../component/TextField";
+import { sample } from "lodash";
+
+const StyledButton = styled(Button)`
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+`;
+
+const BackBtn = styled(Button)`
+  border: none;
+`;
+
+const BackButton = styled.img`
+  width: 16px;
+  cursor: pointer;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  row-gap: 15px;
+`;
+
+const TitleGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr;
+  width: 100%;
+`;
+
+const TitleTypography = styled(Typography)`
+  font-weight: bold;
+  color: #000;
+  size: 36px;
+  text-align: center;
+`;
+
+const CustomContainer = styled.div`
+  position: relative;
+  height: 80px;
+  width: 100%;
+`;
+
+const SubText = styled(Typography)`
+  font-weight: bold;
+  color: #000;
+  size: 36px;
+  text-align: center;
+`;
 
 export default function Custom1() {
-  const [enable, setEnable] = useState(true);
   const router = useRouter();
-
   const [sampleItem, setSampleItem] = useState();
   const [initial, setInitial] = useState("");
-
-  const StyledButton = styled(Button)`
-    border-radius: 100px;
-    border: none;
-    cursor: pointer;
-  `;
-
-  const BackBtn = styled(Button)`
-    border: none;
-  `;
-
-  const BackButton = styled.img`
-    width: 16px;
-    cursor: pointer;
-  `;
-
-  const Grid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    row-gap: 15px;
-  `;
-
-  const TitleGrid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: 1fr;
-    width: 100%;
-  `;
-
-  const TitleTypography = styled(Typography)`
-    font-weight: bold;
-    color: #000;
-    size: 36px;
-    text-align: center;
-  `;
-
-  const CustomContainer = styled.div`
-    position: relative;
-    height: 80px;
-    width: 100%;
-  `;
-
-  const SubText = styled(Typography)`
-    font-weight: bold;
-    color: #000;
-    size: 36px;
-    text-align: center;
-  `;
 
   const onInitialChange = (e) => {
     const { value } = e.target;
@@ -74,6 +73,9 @@ export default function Custom1() {
       setInitial(value.replace(/[^\\!-z]/gi, "").toUpperCase());
     }
   };
+  useEffect(() => {
+    console.log(sampleItem);
+  }, [sampleItem]);
 
   return (
     <Layout>
@@ -86,7 +88,7 @@ export default function Custom1() {
 
       <Margin size="20" />
 
-      {/* <OriginCard src="/temp/temp-card.svg" /> */}
+      {/* <Canvas sampleItem={sampleItem} initial={initial} /> */}
       <Canvas sampleItem={sampleItem} />
 
       <Margin size="20" />

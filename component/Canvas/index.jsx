@@ -24,7 +24,6 @@ const wrapper = css`
 
 const Canvas = ({ sampleItem }) => {
   const [canvas, setCanvas] = useState("");
-
   const initCanvas = () =>
     new fabric.Canvas("canvas", {
       height: 220,
@@ -36,8 +35,9 @@ const Canvas = ({ sampleItem }) => {
   const addImage = useCallback(
     (image, x, y) =>
       new Promise((resolve) => {
-        fabric.Image.fromURL(image, (myImg) => {
+        fabric.Image.fromURL(image.src, (myImg) => {
           const img = myImg.set({
+            id: image,
             left: x,
             top: y,
             selectable: false,
@@ -61,8 +61,7 @@ const Canvas = ({ sampleItem }) => {
       canvas.clear();
 
       // 이미지 추가
-      if (sampleItem) await addImage(sampleItem?.image, 10, 40);
-      console.log(sampleItem);
+      if (sampleItem) await addImage(sampleItem?.image, 40, 160);
     };
 
     doAsync();
