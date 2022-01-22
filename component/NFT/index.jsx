@@ -1,9 +1,13 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Typography from "../Typography";
 import Margin from "../Margin";
+import domtoimage from "dom-to-image";
+import { saveAs } from "file-saver";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StyledTypography = styled(Typography)`
   margin-left: 18px;
@@ -75,43 +79,14 @@ const ShareLogo = styled.img`
 `;
 
 const ShareLogoBox = styled.div`
-  margin-top: 15px;
-  margin-left: 200px;
-  float: right;
-  width: 19px;
-  height: 19px;
-  z-index: 5;
-  position: absolute;
+    margin-top: 15px;
+    margin-left: 200px;
+    float: right;
+    width: 30px;
+    height: 30px;
+    z-index: 5;
+    position: absolute;
 `;
-
-function NFTbegin() {
-  return (
-    <NFTstyle>
-      <Margin size="15" />
-      <StyledTypography size="17"></StyledTypography>
-      <LogoImage src="/login/main-icon.svg" />
-      <NFTbackground>
-        <Margin size="50" />
-        <StyledTypography size="20" color="">
-          BLOV가 처음이시네요!
-          <Margin size="30" />
-          <StyledTypography size="15">
-            지금 바로
-            <br />
-            나만의 전자헌혈증을
-            <br />
-            만들어보세요
-          </StyledTypography>
-        </StyledTypography>
-        <Margin size="20" />
-      </NFTbackground>
-      <NFTfooter>
-        <Margin size="40" />
-        <StyledTypography color="white"></StyledTypography>
-      </NFTfooter>
-    </NFTstyle>
-  );
-}
 
 function NFTgold() {
   return (
@@ -138,38 +113,56 @@ function NFTgold() {
 }
 
 export default function NFT(data) {
-  const router = useRouter();
-  const [nftData, setNftData] = useState(data.data);
+    const router = useRouter();
+    const [isActive, setIsActive] = useState(false); // 저장 완료 토스트 메시지용 State
+    const [nftData, setNftData] = useState(data.data);
+    const nftRef = useRef();
 
-  if (!nftData.cardImage) {
-    // 이미지 넘어온 s거 없음
-    return <NFTbegin />;
-  } else if (nftData.cardId == "0000") {
-    // 특정 case (금장)
-    return <NFTgold />;
-  }
-  return (
-    // 일반 case
-    <NFTstyle>
-      <NFTimagebox
-        onClick={() => {
-          nftData.cardImage == "null"
-            ? router.push("/custom1")
-            : router.push("/donorDetail");
-        }}
-      >
-        <NFTimageSource
-          src={
-            nftData.cardImage != "null"
-              ? nftData.cardImage
-              : `/mywallet/test-img-default.png`
-          }
-        />
-        <Margin size="270" />
-      </NFTimagebox>
-      <ShareLogoBox onClick={() => router.push("/")}>
-        <ShareLogo src="/mywallet/share-icon.svg" />
-      </ShareLogoBox>
-    </NFTstyle>
-  );
+    const handleDownloadNFT = () => {
+        const myNft = nftRef.current;
+        domtoimage.toBlob(myNft).then((blob) => {
+            saveAs(blob, "my_NFT_blood_donation_from_BLOV.png");
+        });
+        toast("저장 완료!\n내 헌혈증을 공유해보세요", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: 0,
+        });
+    };
+
+    if (nftData.cardId == "0000") {
+        // 특정 case (금장)
+        return <NFTgold />;
+    }
+    return (
+        // 일반 case
+        <NFTstyle>
+            <NFTimagebox
+                onClick={() => {
+                    nftData.cardImage != null
+                        ? router.push("/donorDetail")
+                        : router.push("/custom1");
+                }}
+            >
+                <NFTimageSource
+                    ref={nftRef}
+                    src={
+                        nftData.cardImage != null
+                            ? nftData.cardImage
+                            : "/mywallet/default-NFT.png"
+                    }
+                />
+            </NFTimagebox>
+            <Margin size="270" />
+            <ShareLogoBox onClick={handleDownloadNFT}>
+                {" "}
+                <ShareLogo src="/mywallet/share-icon.svg" />
+                <ToastContainer />
+            </ShareLogoBox>
+        </NFTstyle>
+    );
 }
