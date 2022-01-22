@@ -28,7 +28,7 @@ const sampleButton = (image, selected) => css`
   flex-grow: 0;
   flex-shrink: 0;
   height: 70px;
-  border: 3px solid ${selected ? "#0062AD" : "#ffffff"};
+  border: 2px solid ${selected ? "#DF2A19" : "#ffffff"};
   border-radius: 35px;
   background-color: #fff;
   background-image: url(${image.src});
