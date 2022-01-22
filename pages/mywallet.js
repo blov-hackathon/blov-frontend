@@ -37,7 +37,7 @@ export default function Wallet() {
     }, []);
     const testArray = [
         { cardImage: "/mywallet/test-img.png", cardId: "0123" },
-        { cardImage: "null", cardId: "7896" },
+        { cardImage: null, cardId: "7896" },
         { cardImage: "", cardId: "0000" },
     ];
     return (

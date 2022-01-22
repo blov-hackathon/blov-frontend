@@ -118,6 +118,7 @@ export default function NFT(data) {
     const [nftData, setNftData] = useState(data.data);
     console.log(data);
     const nftRef = useRef();
+
     const handleDownloadNFT = () => {
         console.log("done");
         const myNft = nftRef.current;
@@ -134,6 +135,7 @@ export default function NFT(data) {
             progress: 0,
         });
     };
+
     if (nftData.cardId == "0000") {
         // 특정 case (금장)
         return <NFTgold />;
@@ -143,15 +145,15 @@ export default function NFT(data) {
         <NFTstyle>
             <NFTimagebox
                 onClick={() => {
-                    nftData.cardImage == null
-                        ? router.push("/custom1")
-                        : router.push("/donorDetail");
+                    nftData.cardImage != null
+                        ? router.push("/donorDetail")
+                        : router.push("/custom1");
                 }}
             >
                 <NFTimageSource
                     ref={nftRef}
                     src={
-                        nftData.cardImage != "null"
+                        nftData.cardImage != null
                             ? nftData.cardImage
                             : "/mywallet/default-NFT.png"
                     }
