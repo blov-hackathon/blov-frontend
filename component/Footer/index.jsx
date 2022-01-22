@@ -183,14 +183,14 @@ export default function Footer() {
               </QrScreen>
             </BlackScreen>
           }
-          <FooterImage src="delivery/wallet-address.svg" />
+          <FooterImage src="/delivery/wallet-address.svg" />
           <StyledText size="15" color="#878787">
             헌혈지갑 주소
           </StyledText>
         </ContentWrapper>
         <FooterBar src="delivery/footer-colBar.svg" />
         <ContentWrapper width="47" onClick={() => router.push("/deliveryList")}>
-          <FooterImage src="delivery/listMore.svg" />
+          <FooterImage src="/delivery/listMore.svg" />
           <StyledText size="15" color="#DF2A19">
             전달내역 더보기
           </StyledText>

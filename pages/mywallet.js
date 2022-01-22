@@ -1,6 +1,6 @@
 import Layout from "../component/Layout";
 import Typography from "../component/Typography";
-import NFT from "../component/NFT/";
+import NFT from "../component/NFT";
 import axios from "axios";
 import React, { Component, useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
