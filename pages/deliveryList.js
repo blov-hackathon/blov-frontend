@@ -5,6 +5,8 @@ import Typography from "../component/Typography";
 import { useRouter } from "next/router";
 import Button from "../component/Button";
 import _ from "lodash";
+import Footer from "../component/Footer";
+import Flex from "../component/Flex";
 
 const TitleWrapper = styled.div`
   position: sticky;
@@ -13,6 +15,7 @@ const TitleWrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   width: 100%;
+  max-width: 375px;
   height: 90px;
   background-color: #d84d40;
   opacity: 1;
@@ -85,29 +88,6 @@ const StyledText = styled(Typography)`
   color: ${(props) => props.color};
 `;
 
-const FooterWrapper = styled.div`
-  position: sticky;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  height: 90px;
-  box-shadow: 3px -3px 8px #00000029;
-  z-index: 5;
-  background-color: white;
-`;
-
-const FooterBar = styled.img`
-  width: 5px;
-  height: 60px;
-`;
-
-const FooterImage = styled.img`
-  width: 100%;
-  height: 25px;
-`;
-
 export default function DeliveryList() {
   const router = useRouter();
 
@@ -138,7 +118,7 @@ export default function DeliveryList() {
     },
     {
       senderName: "한멋사",
-      receiverName: "김멋사",
+      receiverName: "박멋사",
       date: "2021.01.19",
       bloodKind: "전혈 320ML",
     },
@@ -170,16 +150,18 @@ export default function DeliveryList() {
 
   return (
     <>
-      <TitleWrapper>
-        <BackBtn
-          onClick={() => router.push("/login")}
-          backgroundColor="#d84d40"
-        >
-          <BackButton src="/temp/temp-back-white.svg" />
-        </BackBtn>
-        <TitleTypography>헌혈증 전달내역</TitleTypography>
-        <div />
-      </TitleWrapper>
+      <Flex justify="center" align="center">
+        <TitleWrapper>
+          <BackBtn
+            onClick={() => router.push("/login")}
+            backgroundColor="#d84d40"
+          >
+            <BackButton src="/temp/temp-back-white.svg" />
+          </BackBtn>
+          <TitleTypography>헌혈증 전달내역</TitleTypography>
+          <div />
+        </TitleWrapper>
+      </Flex>
       <Layout>
         {_.map(deliveryData, (data) => (
           <>
@@ -227,23 +209,7 @@ export default function DeliveryList() {
           </>
         ))}
       </Layout>
-      <FooterWrapper>
-        <ElementWrapper justify="space-around">
-          <ContentWrapper width="47">
-            <FooterImage src="delivery/wallet-address.svg" />
-            <StyledText size="15" color="#878787">
-              헌혈지갑 주소
-            </StyledText>
-          </ContentWrapper>
-          <FooterBar src="delivery/footer-colBar.svg" />
-          <ContentWrapper width="47">
-            <FooterImage src="delivery/listMore.svg" />
-            <StyledText size="15" color="#DF2A19">
-              전달내역 더보기
-            </StyledText>
-          </ContentWrapper>
-        </ElementWrapper>
-      </FooterWrapper>
+      <Footer />
     </>
   );
 }
