@@ -1,15 +1,47 @@
-import React, { useState } from "react";
-import Layout from "../component/Layout";
-import Typography from "../component/Typography";
-import Button from "../component/Button";
-import Margin from "../component/Margin";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Layout from "../../component/Layout";
+import Typography from "../../component/Typography";
+import Button from "../../component/Button";
+import Margin from "../../component/Margin";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Footer from "../component/Footer";
+import Footer from "../../component/Footer";
+import axios from "axios";
+import { identity } from "lodash";
 
 export default function DonorDetail() {
   const [enable, setEnable] = useState(true);
+  const router = useRouter();
+  const { id } = router.query;
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const item = localStorage.getItem("token");
+      setToken(item);
+      if (!item) {
+        router.push("/login");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    axios(`https://api-dev.blov.us/getDonorCard/${id}`, {
+      method: "GET",
+      crossDomain: true,
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [id]);
 
   const StyledButton = styled(Button)`
     border-radius: 100px;
@@ -97,7 +129,12 @@ export default function DonorDetail() {
       <div>
         {enable ? (
           <Link href="#">
-            <StyledButton backgroundColor="#DF2A19" width="300" height="50">
+            <StyledButton
+              backgroundColor="#DF2A19"
+              width="300"
+              height="50"
+              onClick={() => router.push("/camera")}
+            >
               <Typography color="#fff" size="16">
                 헌혈증 보내기
               </Typography>
@@ -114,7 +151,6 @@ export default function DonorDetail() {
     );
   }
 
-  const router = useRouter();
   if (typeof window !== "undefined") {
     const item = localStorage.getItem("token");
     if (!item) {

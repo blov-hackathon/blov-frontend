@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../component/Layout";
 import styled from "styled-components";
 import Typography from "../component/Typography";
@@ -7,6 +7,7 @@ import Button from "../component/Button";
 import _ from "lodash";
 import Footer from "../component/Footer";
 import Flex from "../component/Flex";
+import axios from "axios";
 
 const TitleWrapper = styled.div`
   position: sticky;
@@ -90,6 +91,7 @@ const StyledText = styled(Typography)`
 
 export default function DeliveryList() {
   const router = useRouter();
+  const [token, setToken] = useState();
 
   if (typeof window !== "undefined") {
     const item = localStorage.getItem("token");
@@ -97,6 +99,33 @@ export default function DeliveryList() {
       router.push("/login");
     }
   }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const item = localStorage.getItem("token");
+      setToken(item);
+      if (!item) {
+        router.push("/login");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    axios(`https://api-dev.blov.us/getDeliveryList`, {
+      method: "GET",
+      crossDomain: true,
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => {
+        setQrData(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [token]);
+
   const deliveryData = [
     {
       senderName: "김멋사",
