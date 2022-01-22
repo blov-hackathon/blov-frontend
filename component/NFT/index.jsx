@@ -79,13 +79,13 @@ const ShareLogo = styled.img`
 `;
 
 const ShareLogoBox = styled.div`
-    margin-top: 15px;
-    margin-left: 200px;
-    float: right;
-    width: 30px;
-    height: 30px;
-    z-index: 5;
-    position: absolute;
+  margin-top: 15px;
+  margin-left: 200px;
+  float: right;
+  width: 30px;
+  height: 30px;
+  z-index: 5;
+  position: absolute;
 `;
 
 function NFTgold() {
@@ -113,56 +113,56 @@ function NFTgold() {
 }
 
 export default function NFT(data) {
-    const router = useRouter();
-    const [isActive, setIsActive] = useState(false); // 저장 완료 토스트 메시지용 State
-    const [nftData, setNftData] = useState(data.data);
-    const nftRef = useRef();
+  const router = useRouter();
+  const [isActive, setIsActive] = useState(false); // 저장 완료 토스트 메시지용 State
+  const [nftData, setNftData] = useState(data.data);
+  const nftRef = useRef();
 
-    const handleDownloadNFT = () => {
-        const myNft = nftRef.current;
-        domtoimage.toBlob(myNft).then((blob) => {
-            saveAs(blob, "my_NFT_blood_donation_from_BLOV.png");
-        });
-        toast("저장 완료!\n내 헌혈증을 공유해보세요", {
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            progress: 0,
-        });
-    };
+  const handleDownloadNFT = () => {
+    const myNft = nftRef.current;
+    domtoimage.toBlob(myNft).then((blob) => {
+      saveAs(blob, "my_NFT_blood_donation_from_BLOV.png");
+    });
+    toast("저장 완료!\n내 헌혈증을 공유해보세요", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: 0,
+    });
+  };
 
-    if (nftData.cardId == "0000") {
-        // 특정 case (금장)
-        return <NFTgold />;
-    }
-    return (
-        // 일반 case
-        <NFTstyle>
-            <NFTimagebox
-                onClick={() => {
-                    nftData.cardImage != null
-                        ? router.push("/donorDetail")
-                        : router.push("/custom1");
-                }}
-            >
-                <NFTimageSource
-                    ref={nftRef}
-                    src={
-                        nftData.cardImage != null
-                            ? nftData.cardImage
-                            : "/mywallet/default-NFT.png"
-                    }
-                />
-            </NFTimagebox>
-            <Margin size="270" />
-            <ShareLogoBox onClick={handleDownloadNFT}>
-                {" "}
-                <ShareLogo src="/mywallet/share-icon.svg" />
-                <ToastContainer />
-            </ShareLogoBox>
-        </NFTstyle>
-    );
+  if (nftData.cardId == "0000") {
+    // 특정 case (금장)
+    return <NFTgold />;
+  }
+  return (
+    // 일반 case
+    <NFTstyle>
+      <NFTimagebox
+        onClick={() => {
+          nftData.cardImage == null
+            ? router.push(`/custom/${data.data.cardId}`)
+            : router.push(`/donorDetail/${data.data.cardId}`);
+        }}
+      >
+        <NFTimageSource
+          ref={nftRef}
+          src={
+            nftData.cardImage != null
+              ? nftData.cardImage
+              : "/mywallet/default-NFT.png"
+          }
+        />
+      </NFTimagebox>
+      <Margin size="270" />
+      <ShareLogoBox onClick={handleDownloadNFT}>
+        {" "}
+        <ShareLogo src="/mywallet/share-icon.svg" />
+        <ToastContainer />
+      </ShareLogoBox>
+    </NFTstyle>
+  );
 }

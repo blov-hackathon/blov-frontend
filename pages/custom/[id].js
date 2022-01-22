@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../component/Layout";
-import Typography from "../component/Typography";
-import Button from "../component/Button";
-import Margin from "../component/Margin";
+import Layout from "../../component/Layout";
+import Typography from "../../component/Typography";
+import Button from "../../component/Button";
+import Margin from "../../component/Margin";
 import styled, { css } from "styled-components";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
-import samples from "../public/data/samples";
-import ImagePicker from "../component/ImagePicker";
-import Canvas from "../component/Canvas";
-import TextField from "../component/TextField";
-import Input from "../component/Input";
+import samples from "../../public/data/samples";
+import ImagePicker from "../../component/ImagePicker";
+import Canvas from "../../component/Canvas";
+import TextField from "../../component/TextField";
+import Input from "../../component/Input";
 
 const StyledButton = styled(Button)`
   border-radius: 100px;
