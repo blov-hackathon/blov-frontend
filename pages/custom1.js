@@ -65,12 +65,13 @@ const SubText = styled(Typography)`
 const StyledInput = styled(Input)`
   position: absolute;
   top: 200px;
-  width: 120px;
+  width: 160px;
   height: 30px;
   color: #fff;
   background-color: #f8a9a2;
   border: none;
   text-align: center;
+  text-overflow: clip;
   z-index: 9;
 `;
 
@@ -96,25 +97,19 @@ export default function Custom1() {
         </BackBtn>
         <TitleTypography>나만의 헌혈증 꾸미기</TitleTypography>
       </TitleGrid>
-
       <Margin size="20" />
-
-      {/* <Canvas sampleItem={sampleItem} initial={initial} /> */}
       <Canvas sampleItem={sampleItem}></Canvas>
-
       <StyledInput
         value={textResult}
         onkeyup={onPrintText}
         onChange={(e) => setTextResult(e.target.value)}
       />
-
+      <Margin size="40" />
       <CustomContainer>
         <SubText>이미지 선택하기</SubText>
         <ImagePicker samples={samples.sampleImg} onChange={setSampleItem} />
       </CustomContainer>
-
       <Margin size="80" />
-
       <CustomContainer>
         <SubText>한 줄 메세지</SubText>
         <Input
@@ -123,9 +118,7 @@ export default function Custom1() {
           onChange={(e) => setTextResult(e.target.value)}
         />
       </CustomContainer>
-
       <Margin size="40" />
-
       <Link href={"/donorDetail"}>
         <StyledButton backgroundColor="#9B9B9B" width="280" height="50">
           <Typography color="#fff" size="16">
