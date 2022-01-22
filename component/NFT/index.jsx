@@ -1,9 +1,11 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Typography from "../Typography";
 import Margin from "../Margin";
+import domtoimage from "dom-to-image";
+import { saveAs } from "file-saver";
 
 const StyledTypography = styled(Typography)`
     margin-left: 18px;
@@ -78,40 +80,11 @@ const ShareLogoBox = styled.div`
     margin-top: 15px;
     margin-left: 200px;
     float: right;
-    width: 19px;
-    height: 19px;
+    width: 30px;
+    height: 30px;
     z-index: 5;
     position: absolute;
 `;
-
-function NFTbegin() {
-    return (
-        <NFTstyle>
-            <Margin size="15" />
-            <StyledTypography size="17"></StyledTypography>
-            <LogoImage src="/login/main-icon.svg" />
-            <NFTbackground>
-                <Margin size="50" />
-                <StyledTypography size="20" color="">
-                    BLOV가 처음이시네요!
-                    <Margin size="30" />
-                    <StyledTypography size="15">
-                        지금 바로
-                        <br />
-                        나만의 전자헌혈증을
-                        <br />
-                        만들어보세요
-                    </StyledTypography>
-                </StyledTypography>
-                <Margin size="20" />
-            </NFTbackground>
-            <NFTfooter>
-                <Margin size="40" />
-                <StyledTypography color="white"></StyledTypography>
-            </NFTfooter>
-        </NFTstyle>
-    );
-}
 
 function NFTgold() {
     return (
@@ -139,12 +112,18 @@ function NFTgold() {
 
 export default function NFT(data) {
     const router = useRouter();
+    //const [isToast, setToast] = useState(false); // 저장 완료 토스트 메시지용 State
     const [nftData, setNftData] = useState(data.data);
     console.log(data);
-    if (!nftData.cardImage) {
-        // 이미지 넘어온 s거 없음
-        return <NFTbegin />;
-    } else if (nftData.cardId == "0000") {
+    const nftRef = useRef();
+    const handleDownloadNFT = () => {
+        const myNft = nftRef.current;
+        domtoimage.toBlob(myNft).then((blob) => {
+            saveAs(blob, "my_NFT_blood_donation_from_BLOV.png");
+        });
+    };
+
+    if (nftData.cardId == "0000") {
         // 특정 case (금장)
         return <NFTgold />;
     }
@@ -153,21 +132,23 @@ export default function NFT(data) {
         <NFTstyle>
             <NFTimagebox
                 onClick={() => {
-                    nftData.cardImage == "null"
+                    nftData.cardImage == null
                         ? router.push("/custom1")
                         : router.push("/donorDetail");
                 }}
             >
                 <NFTimageSource
+                    ref={nftRef}
                     src={
                         nftData.cardImage != "null"
                             ? nftData.cardImage
-                            : `/mywallet/test-img-default.png`
+                            : "/mywallet/default-NFT.png"
                     }
                 />
-                <Margin size="270" />
             </NFTimagebox>
-            <ShareLogoBox onClick={() => router.push("/")}>
+            <Margin size="270" />
+            <ShareLogoBox onClick={handleDownloadNFT}>
+                {" "}
                 <ShareLogo src="/mywallet/share-icon.svg" />
             </ShareLogoBox>
         </NFTstyle>

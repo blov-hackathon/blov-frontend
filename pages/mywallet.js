@@ -38,6 +38,7 @@ export default function Wallet() {
     const testArray = [
         { cardImage: "/mywallet/test-img.png", cardId: "0123" },
         { cardImage: "null", cardId: "7896" },
+        { cardImage: "", cardId: "0000" },
     ];
     return (
         <>
@@ -51,7 +52,6 @@ export default function Wallet() {
                     </div>
                 </Header>
                 <Margin size="40" />
-
                 <Carousel
                     height="400px"
                     width="240px"
