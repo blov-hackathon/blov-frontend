@@ -3,6 +3,8 @@ import Layout from "../component/Layout";
 import Typography from "../component/Typography";
 import Button from "../component/Button";
 import Margin from "../component/Margin";
+import Input from "../component/Input";
+import Footer from "../component/Footer";
 import styled from "styled-components";
 import Link from "next/link";
 
@@ -12,9 +14,11 @@ export default function DonorDetail() {
   const [enable, setEnable] = useState(true);
 
   const StyledButton = styled(Button)`
+    position: relative;
     border-radius: 100px;
     border: none;
     cursor: pointer;
+    text-align: center;
   `;
 
   const BackBtn = styled(Button)`
@@ -65,6 +69,8 @@ export default function DonorDetail() {
   `;
 
   const StyledDesc = styled(Typography)`
+    position: relative;
+    right: 46px;
     font-weight: bold;
     color: #000;
     size: 16px;
@@ -72,11 +78,16 @@ export default function DonorDetail() {
 
   const StyledValue = styled.textarea`
     position: relative;
-    width: 90%;
-    height: 100px;
+    width: 280px;
+    height: 60px;
+    left: 20px;
+    border: 0.5px solid #dcdcdc;
+    border-radius: 12px;
+    background-color: #f8f8f8;
     opacity: 0.6;
+    font-size: 12px;
     color: #191919;
-    size: 32px;
+    resize: none;
   `;
 
   const router = useRouter();
@@ -89,30 +100,38 @@ export default function DonorDetail() {
   }
 
   return (
-    <Layout>
-      <TitleGrid>
-        <BackBtn onClick={() => router.push("/camera")}>
-          <BackButton src="/temp/temp-back.svg" />
-        </BackBtn>
+    <>
+      <Layout>
+        <TitleGrid>
+          <BackBtn onClick={() => router.push("/camera")}>
+            <BackButton src="/temp/temp-back.svg" />
+          </BackBtn>
 
-        <TitleTypography>주소 입력하기</TitleTypography>
-      </TitleGrid>
-      <Margin size="60" />
-      <StyledDesc>상대방 헌혈지갑 주소</StyledDesc>
+          <TitleTypography>주소 입력하기</TitleTypography>
+        </TitleGrid>
+        <Margin size="30" />
 
-      <Margin size="60" />
+        <StyledDesc>상대방 헌혈지갑 주소</StyledDesc>
 
-      <StyledValue placeholder="헌혈증을 보내려는 상대방의 헌혈지갑 주소를 입력해주세요." />
+        <Margin size="10" />
+        <StyledValue
+          class="noresize"
+          placeholder="헌혈증을 보내려는 상대방의 헌혈지갑 주소를 입력해주세요."
+        />
 
-      <Margin size="300" />
+        <Margin size="300" />
 
-      <Link href={"/donorDetail"}>
-        <StyledButton backgroundColor="red" width="280" height="50">
-          <Typography color="#fff" size="16">
-            입력하기
-          </Typography>
-        </StyledButton>
-      </Link>
-    </Layout>
+        <Link href={"/donorDetail"}>
+          <StyledButton backgroundColor="red" width="280" height="50">
+            <Typography color="#fff" size="16">
+              입력하기
+            </Typography>
+          </StyledButton>
+        </Link>
+
+        <Margin size="54" />
+      </Layout>
+      <Footer />
+    </>
   );
 }
