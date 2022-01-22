@@ -10,6 +10,7 @@ import Button from "../component/Button";
 import Footer from "../component/Footer";
 import Carousel from "nuka-carousel";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const BoldTypography = styled(Typography)`
     font-weight: bold;
@@ -32,13 +33,40 @@ const Menu = {
 
 export default function Wallet() {
     const [nftData, setNftData] = useState([]);
+    const [cardList, setCardList] = useState();
+    const router = useRouter();
+
+    const [token, setToken] = useState();
+
     useEffect(() => {
-        axios.get("/mywallet").then(({ Images }) => setNftData(Images));
+        if (typeof window !== "undefined") {
+            const item = localStorage.getItem("token");
+            setToken(item);
+            if (!item) {
+                router.push("/login");
+            }
+        }
     }, []);
+
+    useEffect(() => {
+        axios(`https://api-dev.blov.us/getDonorCard`, {
+            method: "GET",
+            crossDomain: true,
+            headers: {
+                Authorization: `Token ${token}`,
+            },
+        })
+            .then((res) => {
+                setCardList(res.data);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }, [token]);
+
     const testArray = [
         { cardImage: "/mywallet/test-img.png", cardId: "0123" },
-        { cardImage: null, cardId: "7896" },
-        { cardImage: "", cardId: "0000" },
+        { cardImage: "null", cardId: "7896" },
     ];
     return (
         <>
@@ -52,6 +80,7 @@ export default function Wallet() {
                     </div>
                 </Header>
                 <Margin size="40" />
+
                 <Carousel
                     height="400px"
                     width="240px"

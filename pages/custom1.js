@@ -11,7 +11,7 @@ import samples from "../public/data/samples";
 import ImagePicker from "../component/ImagePicker";
 import Canvas from "../component/Canvas";
 import TextField from "../component/TextField";
-import { sample } from "lodash";
+import Input from "../component/Input";
 
 const StyledButton = styled(Button)`
   border-radius: 100px;
@@ -62,17 +62,29 @@ const SubText = styled(Typography)`
   text-align: center;
 `;
 
+const StyledInput = styled(Input)`
+  position: absolute;
+  top: 200px;
+  width: 160px;
+  height: 30px;
+  color: #fff;
+  background-color: #f8a9a2;
+  border: none;
+  text-align: center;
+  text-overflow: clip;
+  z-index: 9;
+`;
+
 export default function Custom1() {
   const router = useRouter();
   const [sampleItem, setSampleItem] = useState();
-  const [initial, setInitial] = useState("");
+  const [textResult, setTextResult] = useState("");
 
-  const onInitialChange = (e) => {
-    const { value } = e.target;
-    if (value.length <= 20) {
-      setInitial(value.replace(/[^\\!-z]/gi, "").toUpperCase());
-    }
+  const onPrintText = (e) => {
+    const textResult = document.getElementById("textResult").value;
+    document.getElementById("textResult").innerText = textResult;
   };
+
   useEffect(() => {
     console.log(sampleItem);
   }, [sampleItem]);
@@ -85,28 +97,28 @@ export default function Custom1() {
         </BackBtn>
         <TitleTypography>나만의 헌혈증 꾸미기</TitleTypography>
       </TitleGrid>
-
       <Margin size="20" />
-
-      {/* <Canvas sampleItem={sampleItem} initial={initial} /> */}
-      <Canvas sampleItem={sampleItem} />
-
-      <Margin size="20" />
-
+      <Canvas sampleItem={sampleItem}></Canvas>
+      <StyledInput
+        value={textResult}
+        onkeyup={onPrintText}
+        onChange={(e) => setTextResult(e.target.value)}
+      />
+      <Margin size="40" />
       <CustomContainer>
         <SubText>이미지 선택하기</SubText>
         <ImagePicker samples={samples.sampleImg} onChange={setSampleItem} />
       </CustomContainer>
-
       <Margin size="80" />
-
       <CustomContainer>
         <SubText>한 줄 메세지</SubText>
-        <TextField value={initial} onChange={onInitialChange} />
+        <Input
+          value={textResult}
+          onkeyup={onPrintText}
+          onChange={(e) => setTextResult(e.target.value)}
+        />
       </CustomContainer>
-
       <Margin size="40" />
-
       <Link href={"/donorDetail"}>
         <StyledButton backgroundColor="#9B9B9B" width="280" height="50">
           <Typography color="#fff" size="16">

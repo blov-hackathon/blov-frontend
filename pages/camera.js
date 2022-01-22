@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 
 import { useState, useRef } from "react";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
 
 import Link from "next/link";
 
@@ -59,8 +58,6 @@ export default function Camera() {
       location.href = "/donorDetail";
     }
   };
-
-  const router = useRouter();
 
   return (
     <Layout>
