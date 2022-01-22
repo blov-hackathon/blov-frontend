@@ -92,6 +92,7 @@ const StyledText = styled(Typography)`
 export default function DeliveryList() {
   const router = useRouter();
   const [token, setToken] = useState();
+  const [deliveryList, setDeliveryList] = useState();
 
   if (typeof window !== "undefined") {
     const item = localStorage.getItem("token");
@@ -119,7 +120,8 @@ export default function DeliveryList() {
       },
     })
       .then((res) => {
-        setQrData(res.data);
+        console.log(res.data);
+        setDeliveryList(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -192,7 +194,7 @@ export default function DeliveryList() {
         </TitleWrapper>
       </Flex>
       <Layout>
-        {_.map(deliveryData, (data) => (
+        {_.map(deliveryList, (data) => (
           <>
             <ElementWrapper
               justify="space-around"
@@ -200,14 +202,14 @@ export default function DeliveryList() {
             >
               <BackCircle
                 rgba={
-                  data.receiverName == "박멋사"
+                  data.deliveryType == "recieve"
                     ? "rgba(255, 195, 190, 0.32)"
                     : "rgba(176, 191, 242, 0.32)"
                 }
               >
                 <Arrow
                   src={
-                    data.receiverName == "박멋사"
+                    data.deliveryType == "recieve"
                       ? "delivery/in-arrow.svg"
                       : "delivery/out-arrow.svg"
                   }
@@ -216,20 +218,30 @@ export default function DeliveryList() {
               </BackCircle>
               <ContentWrapper width="60">
                 <DeliveryInfo>
-                  <StyledName size="18">{data.senderName}</StyledName>
-                  <Arrow src="delivery/delivery-arrow.svg" width="10" />
-                  <StyledName size="18">{data.receiverName}</StyledName>
+                  <StyledName size="18">{data.toUser}</StyledName>
+                  <StyledText size="15" color="#c1c1c1">
+                    {" "}
+                    -{" "}
+                  </StyledText>
+                  <StyledName size="18">{data.fromUser}</StyledName>
                 </DeliveryInfo>
                 <DeliveryInfo>
                   <StyledText size="15" color="#c1c1c1">
-                    {data.date}
+                    {data.donorCard.donorDate}
                   </StyledText>
                   <StyledText size="15" color="#c1c1c1">
                     {" "}
                     |{" "}
                   </StyledText>
                   <StyledText size="15" color="#c1c1c1">
-                    {data.bloodKind}
+                    {data.donorCard.donorType}
+                  </StyledText>
+                  <StyledText size="15" color="#c1c1c1">
+                    {" "}
+                    |{" "}
+                  </StyledText>
+                  <StyledText size="15" color="#c1c1c1">
+                    {data.donorCard.donorVolume}
                   </StyledText>
                 </DeliveryInfo>
               </ContentWrapper>

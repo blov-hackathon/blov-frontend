@@ -63,41 +63,36 @@ export default function Wallet() {
                 console.log(e);
             });
     }, [token]);
+  return (
+    <>
+      <Layout>
+        <Header>
+          <Margin size="30" />
+          <BoldTypography size="24">나의 헌혈지갑</BoldTypography>
+          <Margin size="10" />
+          <div style={Menu}>
+            <Typography>NFT</Typography>
+          </div>
+        </Header>
+        <Margin size="40" />
 
-    const testArray = [
-        { cardImage: "/mywallet/test-img.png", cardId: "0123" },
-        { cardImage: "null", cardId: "7896" },
-    ];
-    return (
-        <>
-            <Layout>
-                <Header>
-                    <Margin size="30" />
-                    <BoldTypography size="24">나의 헌혈지갑</BoldTypography>
-                    <Margin size="10" />
-                    <div style={Menu}>
-                        <Typography>NFT</Typography>
-                    </div>
-                </Header>
-                <Margin size="40" />
-
-                <Carousel
-                    height="400px"
-                    width="240px"
-                    slidesToShow={1} // 한 번에 보여줄 슬라이드의 개수
-                    cellAlign="center"
-                    renderCenterLeftControls={({ previousSlide }) => null}
-                    renderCenterRightControls={({ nextSlide }) => null}
-                    renderBottomCenterControls={() => null}
-                >
-                    {_.map(testArray, (nftData) => (
-                        <NTFborder>
-                            <NFT data={nftData} />
-                        </NTFborder>
-                    ))}
-                </Carousel>
-            </Layout>
-            <Footer />
-        </>
-    );
+        <Carousel
+          height="400px"
+          width="240px"
+          slidesToShow={1} // 한 번에 보여줄 슬라이드의 개수
+          cellAlign="center"
+          renderCenterLeftControls={({ previousSlide }) => null}
+          renderCenterRightControls={({ nextSlide }) => null}
+          renderBottomCenterControls={() => null}
+        >
+          {_.map(cardList, (nftData) => (
+            <NTFborder>
+              <NFT data={nftData} />
+            </NTFborder>
+          ))}
+        </Carousel>
+      </Layout>
+      <Footer />
+    </>
+  );
 }
