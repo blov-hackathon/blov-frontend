@@ -6,6 +6,8 @@ import Typography from "../Typography";
 import Margin from "../Margin";
 import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StyledTypography = styled(Typography)`
     margin-left: 18px;
@@ -112,17 +114,26 @@ function NFTgold() {
 
 export default function NFT(data) {
     const router = useRouter();
-    //const [isToast, setToast] = useState(false); // 저장 완료 토스트 메시지용 State
+    const [isActive, setIsActive] = useState(false); // 저장 완료 토스트 메시지용 State
     const [nftData, setNftData] = useState(data.data);
     console.log(data);
     const nftRef = useRef();
     const handleDownloadNFT = () => {
+        console.log("done");
         const myNft = nftRef.current;
         domtoimage.toBlob(myNft).then((blob) => {
             saveAs(blob, "my_NFT_blood_donation_from_BLOV.png");
         });
+        toast("저장 완료!\n내 헌혈증을 공유해보세요", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: 0,
+        });
     };
-
     if (nftData.cardId == "0000") {
         // 특정 case (금장)
         return <NFTgold />;
@@ -150,6 +161,7 @@ export default function NFT(data) {
             <ShareLogoBox onClick={handleDownloadNFT}>
                 {" "}
                 <ShareLogo src="/mywallet/share-icon.svg" />
+                <ToastContainer />
             </ShareLogoBox>
         </NFTstyle>
     );
