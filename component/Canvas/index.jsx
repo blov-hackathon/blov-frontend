@@ -6,7 +6,7 @@ import { fabric } from "fabric";
 const wrapper = css`
   position: relative;
   width: 80%;
-  height: 380px;
+  height: 360px;
   /* background-color: black; */
   background-image: url("/temp/temp-card.svg");
 
