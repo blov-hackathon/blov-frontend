@@ -13,56 +13,56 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const BoldTypography = styled(Typography)`
-    font-weight: bold;
+  font-weight: bold;
 `;
 
 const Header = styled.div`
-    width: 300px;
-    text-align: left;
+  width: 300px;
+  text-align: left;
 `;
 
 const NTFborder = styled.div`
-    flex-direction: column;
-    justify-content: center;
-    //box-shadow: -10px 20px 20px #000; // 그림자 이상해서 일단 주석 처리
+  flex-direction: column;
+  justify-content: center;
+  //box-shadow: -10px 20px 20px #000; // 그림자 이상해서 일단 주석 처리
 `;
 
 const Menu = {
-    alignItems: "left",
+  alignItems: "left",
 };
 
 export default function Wallet() {
-    const [nftData, setNftData] = useState([]);
-    const [cardList, setCardList] = useState();
-    const router = useRouter();
+  const [nftData, setNftData] = useState([]);
+  const [cardList, setCardList] = useState();
+  const router = useRouter();
 
-    const [token, setToken] = useState();
+  const [token, setToken] = useState();
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            const item = localStorage.getItem("token");
-            setToken(item);
-            if (!item) {
-                router.push("/login");
-            }
-        }
-    }, []);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const item = localStorage.getItem("token");
+      setToken(item);
+      if (!item) {
+        router.push("/login");
+      }
+    }
+  }, []);
 
-    useEffect(() => {
-        axios(`https://api-dev.blov.us/getDonorCard`, {
-            method: "GET",
-            crossDomain: true,
-            headers: {
-                Authorization: `Token ${token}`,
-            },
-        })
-            .then((res) => {
-                setCardList(res.data);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    }, [token]);
+  useEffect(() => {
+    axios(`https://api-dev.blov.us/getDonorCard`, {
+      method: "GET",
+      crossDomain: true,
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => {
+        setCardList(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [token]);
   return (
     <>
       <Layout>

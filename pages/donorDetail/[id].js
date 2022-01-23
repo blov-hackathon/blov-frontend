@@ -126,7 +126,7 @@ export default function DonorDetail() {
               backgroundColor="#DF2A19"
               width="300"
               height="50"
-              onClick={() => router.push("/camera")}
+              onClick={() => router.push(`/camera/${id}`)}
             >
               <Typography color="#fff" size="16">
                 헌혈증 보내기
@@ -160,35 +160,6 @@ export default function DonorDetail() {
           <TitleTypography>헌혈증 상세보기</TitleTypography>
         </TitleGrid>
         <Margin size="60" />
-        {/*{*/}
-        {/*  cardData && <>*/}
-
-        {/*      <CardImage src = { cardData.cardImage } />*/}
-
-        {/*      <Margin size="40" />*/}
-
-        {/*      <Grid>*/}
-        {/*        <StyledDesc>헌혈일자</StyledDesc>*/}
-        {/*        <StyledValue>{ cardData.donorDate }</StyledValue>*/}
-
-        {/*        <StyledDesc>헌혈종류</StyledDesc>*/}
-        {/*        <StyledValue>{ cardData.donorType } { cardData.donorVolume }ML</StyledValue>*/}
-
-        {/*        <StyledDesc>헌혈인</StyledDesc>*/}
-        {/*        <StyledValue>{ cardData.donorName }</StyledValue>*/}
-
-        {/*        <StyledDesc>생년월일</StyledDesc>*/}
-        {/*        <StyledValue>{ cardData.donorBirth }</StyledValue>*/}
-
-        {/*        <StyledDesc>혈액원명</StyledDesc>*/}
-        {/*        <StyledValue>{ cardData.donorPlace }</StyledValue>*/}
-
-        {/*        <StyledDesc>증서번호</StyledDesc>*/}
-        {/*        <StyledValue>{ cardData.cardId }</StyledValue>*/}
-        {/*      </Grid>*/}
-
-        {/*    </>*/}
-        {/*}*/}
 
         {cardData ? (
           <>
