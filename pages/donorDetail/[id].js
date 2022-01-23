@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Footer from "../../component/Footer";
 import axios from "axios";
 import { identity } from "lodash";
+import Flex from "../../component/Flex";
 
 export default function DonorDetail() {
   const [enable, setEnable] = useState(true);
@@ -191,6 +192,7 @@ export default function DonorDetail() {
             </Grid>
 
             <SendButton />
+            <Margin size="100" />
           </>
         ) : (
           <>
@@ -200,7 +202,9 @@ export default function DonorDetail() {
           </>
         )}
       </Layout>
-      <Footer />
+      <Flex justify="center" align="center">
+        <Footer />
+      </Flex>
     </>
   );
 }
