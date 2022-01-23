@@ -75,19 +75,7 @@ const LogoImage = styled.img`
     height: 40px;
 `;
 
-const ShareLogo = styled.img`
-    height: 18px;
-`;
 
-const ShareLogoBox = styled.div`
-    margin-top: 15px;
-    margin-left: 200px;
-    float: right;
-    width: 30px;
-    height: 30px;
-    z-index: 5;
-    position: absolute;
-`;
 
 function NFTgold() {
     return (
@@ -115,32 +103,11 @@ function NFTgold() {
 
 export default function NFT(data) {
     const router = useRouter();
-    const [active, setActive] = useState(false); // 저장 완료 토스트 메시지용 State
     const [nftData, setNftData] = useState(data.data);
     const nftRef = useRef();
+    const myNft = nftRef.current;
 
-    useEffect(() => {
-        if (active) {
-            setTimeout(() => setActive(false), 2000);
-        }
-    }, [active]);
-
-    const handleDownloadNFT = () => {
-        const myNft = nftRef.current;
-        domtoimage.toBlob(myNft).then((blob) => {
-            saveAs(blob, "my_NFT_blood_donation_from_BLOV.png");
-        });
-        setActive((active) => !active);
-        toast("저장 완료!\n내 헌혈증을 공유해보세요", {
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            progress: 0,
-        });
-    };
+    
 
     if (nftData.cardId == "0000") {
         // 특정 case (금장)
@@ -166,11 +133,7 @@ export default function NFT(data) {
                 />
             </NFTimagebox>
             <Margin size="270" />
-            <ShareLogoBox onClick={handleDownloadNFT}>
-                {" "}
-                {active && <Toast msg={"저장 완료!"} />}
-                <ShareLogo src="/mywallet/share-icon.svg" />
-            </ShareLogoBox>
+           
         </NFTstyle>
     );
 }

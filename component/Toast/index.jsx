@@ -7,16 +7,19 @@ import Margin from "../Margin";
 
 const ToastMsgBox = styled.div`
     text-align: center;
-    height: ${(props) => (props.height ? props.height : "35px")};
-    width: ${(props) => (props.color ? props.color : "120px")};
-    position: fixed;
-    bottom: 180px;
+    margin: 0 auto;
+  
+  position: absolute;
+  bottom:20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 375px;
+  height: 90px;
     border-radius: 30px;
     overflow: hidden;
     font-size: 0.8rem;
-    opacity: 0;
-    visibility: hidden;
-    background: rgba(260, 0, 0, 0.35);
+    background-color: red;
     z-index: 10000;
 `;
 
