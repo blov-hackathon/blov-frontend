@@ -204,7 +204,9 @@ export default function DeliveryList() {
           </>
         ))}
       </Layout>
-      <Footer />
+      <Flex justify="center" align="center">
+        <Footer />
+      </Flex>
     </>
   );
 }

@@ -11,6 +11,7 @@ import axios from "axios";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
+import Flex from "../../component/Flex";
 
 const StyledButton = styled(Button)`
   position: relative;
@@ -145,7 +146,9 @@ export default function DonorDetail() {
         </StyledButton>
         <Margin size="54" />
       </Layout>
-      <Footer />
+      <Flex justify="center" align="center">
+        <Footer />
+      </Flex>
     </>
   );
 }
