@@ -172,29 +172,29 @@ export default function DeliveryList() {
               </BackCircle>
               <ContentWrapper width="60">
                 <DeliveryInfo>
-                  <StyledName size="18">{data.toUser}</StyledName>
+                  <StyledName size="16">{data.toUser}</StyledName>
                   <StyledText size="15" color="#c1c1c1">
                     {" "}
                     -{" "}
                   </StyledText>
-                  <StyledName size="18">{data.fromUser}</StyledName>
+                  <StyledName size="16">{data.fromUser}</StyledName>
                 </DeliveryInfo>
                 <DeliveryInfo>
-                  <StyledText size="15" color="#c1c1c1">
+                  <StyledText size="12" color="#c1c1c1">
                     {data.donorCard.donorDate}
                   </StyledText>
                   <StyledText size="15" color="#c1c1c1">
                     {" "}
                     |{" "}
                   </StyledText>
-                  <StyledText size="15" color="#c1c1c1">
+                  <StyledText size="12" color="#c1c1c1">
                     {data.donorCard.donorType}
                   </StyledText>
                   <StyledText size="15" color="#c1c1c1">
                     {" "}
                     |{" "}
                   </StyledText>
-                  <StyledText size="15" color="#c1c1c1">
+                  <StyledText size="12" color="#c1c1c1">
                     {data.donorCard.donorVolume}
                   </StyledText>
                 </DeliveryInfo>
