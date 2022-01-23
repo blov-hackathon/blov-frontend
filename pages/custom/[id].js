@@ -44,6 +44,8 @@ const TitleGrid = styled.div`
 `;
 
 const TitleTypography = styled(Typography)`
+  position: relative;
+  top: 10px;
   font-weight: bold;
   color: #000;
   size: 36px;
@@ -133,7 +135,7 @@ export default function Custom1() {
         <TitleTypography>나만의 헌혈증 꾸미기</TitleTypography>
       </TitleGrid>
       <Margin size="20" />
-      <Canvas sampleItem={sampleItem}></Canvas>
+      <Canvas />
       <StyledInput
         value={textResult}
         onkeyup={onPrintText}
