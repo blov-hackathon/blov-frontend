@@ -10,8 +10,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function DonorDetail() {
+  const router = useRouter();
   const [enable, setEnable] = useState(true);
-
+  const [address, setAddress] = useState(router.query.address);
   const StyledButton = styled(Button)`
     position: relative;
     border-radius: 100px;
@@ -67,7 +68,7 @@ export default function DonorDetail() {
     }
   `;
 
-  const router = useRouter();
+
 
   if (typeof window !== "undefined") {
     const item = localStorage.getItem("token");
@@ -89,7 +90,9 @@ export default function DonorDetail() {
         <Margin size="40" />
         <StyledDesc>상대방 헌혈지갑 주소</StyledDesc>
         <Margin size="10" />
-        <StyledValue placeholder="헌혈증을 보내려는 상대방의 헌혈지갑 주소를 입력해주세요." />
+        <StyledValue placeholder="헌혈증을 보내려는 상대방의 헌혈지갑 주소를 입력해주세요.">
+          { address }
+        </StyledValue>
 
         <Margin size="200" />
 
