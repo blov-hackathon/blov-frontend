@@ -6,7 +6,7 @@ const moveLeft = keyframes`
     transform: translateX(0px);
   }
   100% {
-    transform: translateX(-970px);
+    transform: translateX(-580px);
   }
 `;
 
@@ -26,7 +26,7 @@ const Slider = styled.img`
 
 const AnimationA = ({ animation }) => (
   <Wrapper>
-    <Slider animation={animation} src="/tutorial/slider.jpg" />
+    <Slider animation={animation} src="/tutorial/slider.svg" />
   </Wrapper>
 );
 
