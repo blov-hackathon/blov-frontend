@@ -107,9 +107,6 @@ export default function NFT(data) {
     window.open(
       `${data.data.cardImage}?download=1&bcdn_filename=my_NFT_blood_donation_from_BLOV.png`
     );
-    domtoimage.toBlob(myNft).then((blob) => {
-      saveAs(blob, "my_NFT_blood_donation_from_BLOV.png");
-    });
     setActive((active) => !active);
   };
   /*if (nftData.cardId == "0000") {
@@ -118,34 +115,39 @@ export default function NFT(data) {
     }*/
   return (
     // 일반 case
-    <NFTstyle>
-      <NFTimagebox
-        onClick={() => {
-          nftData.cardImage == null
-            ? router.push(`/custom/${data.data.cardId}`)
-            : router.push(`/donorDetail/${data.data.cardId}`);
-        }}
-      >
-        <NFTimageSource
-          ref={nftRef}
-          src={
-            nftData.cardImage != null
-              ? nftData.cardImage
-              : "/mywallet/default-NFT.png"
-          }
-        />
-      </NFTimagebox>
-      <Margin size="270" />
-      {nftData && nftData.cardImage == null ? (
-        <></>
-      ) : (
-        <ShareLogoBox onClick={handleDownloadNFT}>
-          {" "}
-          <ShareLogo src="/mywallet/share-icon.svg" />
-        </ShareLogoBox>
-      )}
 
-      {active && <Toast msg={"저장 완료!"} width={"100%"} />}
+    <NFTstyle>
+      {nftData && (
+        <>
+          {" "}
+          <NFTimagebox
+            onClick={() => {
+              nftData.cardImage == null
+                ? router.push(`/custom/${data.data.cardId}`)
+                : router.push(`/donorDetail/${data.data.cardId}`);
+            }}
+          >
+            <NFTimageSource
+              ref={nftRef}
+              src={
+                nftData.cardImage != null
+                  ? nftData.cardImage
+                  : "/mywallet/default-NFT.png"
+              }
+            />
+          </NFTimagebox>
+          <Margin size="270" />
+          {nftData && nftData.cardImage == null ? (
+            <></>
+          ) : (
+            <ShareLogoBox onClick={handleDownloadNFT}>
+              {" "}
+              <ShareLogo src="/mywallet/share-icon.svg" />
+            </ShareLogoBox>
+          )}
+          {active && <Toast msg={"저장 완료!"} width={"100%"} />}
+        </>
+      )}
     </NFTstyle>
   );
 }
