@@ -8,13 +8,13 @@ import _ from "lodash";
 import Footer from "../component/Footer";
 import Flex from "../component/Flex";
 import axios from "axios";
+import Margin from "../component/Margin";
 
 const TitleWrapper = styled.div`
   position: sticky;
   top: 0;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
   width: 100%;
   max-width: 375px;
   height: 90px;
@@ -35,7 +35,7 @@ const BackButton = styled.img`
 const TitleTypography = styled(Typography)`
   font-weight: bold;
   color: #ffffff;
-  font-size: 22px;
+  font-size: 20px;
   text-align: center;
 `;
 
@@ -132,14 +132,17 @@ export default function DeliveryList() {
     <>
       <Flex justify="center" align="center">
         <TitleWrapper>
-          <BackBtn
-            onClick={() => router.push("/mywallet")}
-            backgroundColor="#d84d40"
-          >
-            <BackButton src="/temp/temp-back-white.svg" />
-          </BackBtn>
-          <TitleTypography>헌혈증 전달내역</TitleTypography>
-          <div />
+          <Margin size="35" />
+          <Flex justify="space-around" align="center">
+            <BackBtn
+              onClick={() => router.push("/mywallet")}
+              backgroundColor="#d84d40"
+            >
+              <BackButton src="/temp/temp-back-white.svg" />
+            </BackBtn>
+            <TitleTypography>헌혈증 전달내역</TitleTypography>
+            <div />
+          </Flex>
         </TitleWrapper>
       </Flex>
       <Layout>
