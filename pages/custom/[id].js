@@ -75,7 +75,9 @@ const StyledInput = styled(Input)`
   text-overflow: clip;
   z-index: 9;
 `;
-
+const TextInput = styled(Input)`
+  width: 260px;
+`;
 export default function Custom1() {
   const router = useRouter();
   const { id } = router.query;
@@ -145,7 +147,7 @@ export default function Custom1() {
       <Margin size="80" />
       <CustomContainer>
         <SubText>한 줄 메세지</SubText>
-        <Input
+        <TextInput
           value={textResult}
           onkeyup={onPrintText}
           onChange={(e) => setTextResult(e.target.value)}
