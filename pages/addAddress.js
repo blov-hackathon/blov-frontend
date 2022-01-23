@@ -3,7 +3,6 @@ import Layout from "../component/Layout";
 import Typography from "../component/Typography";
 import Button from "../component/Button";
 import Margin from "../component/Margin";
-import Input from "../component/Input";
 import Footer from "../component/Footer";
 import styled from "styled-components";
 import Link from "next/link";
@@ -30,30 +29,6 @@ export default function DonorDetail() {
     cursor: pointer;
   `;
 
-  const CheckImage = styled.img`
-    width: 200px;
-    position: absolute;
-  `;
-
-  const CardImage = styled.img`
-    width: 200px;
-    box-shadow: 5px 5px 20px #e1e1e1;
-    border-radius: 18px;
-    border: 1px solid #d4d4d4;
-  `;
-
-  const SelectImage = styled(CardImage)`
-    opacity: 0.28;
-    position: relative;
-  `;
-
-  const Grid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    row-gap: 15px;
-  `;
-
   const TitleGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
@@ -66,6 +41,7 @@ export default function DonorDetail() {
     color: #000;
     size: 36px;
     text-align: center;
+    padding-top: 10px;
   `;
 
   const StyledDesc = styled(Typography)`
@@ -73,21 +49,22 @@ export default function DonorDetail() {
     right: 46px;
     font-weight: bold;
     color: #000;
-    size: 16px;
+    size: 20px;
   `;
 
   const StyledValue = styled.textarea`
-    position: relative;
-    width: 280px;
-    height: 60px;
-    left: 20px;
-    border: 0.5px solid #dcdcdc;
+    width: 100%;
+    height: 100px;
+    border: 2px solid #dcdcdc;
     border-radius: 12px;
     background-color: #f8f8f8;
     opacity: 0.6;
     font-size: 12px;
     color: #191919;
-    resize: none;
+
+    ::placeholder {
+      padding: 10px;
+    }
   `;
 
   const router = useRouter();
@@ -109,25 +86,23 @@ export default function DonorDetail() {
 
           <TitleTypography>주소 입력하기</TitleTypography>
         </TitleGrid>
-        <Margin size="30" />
-
+        <Margin size="40" />
         <StyledDesc>상대방 헌혈지갑 주소</StyledDesc>
-
         <Margin size="10" />
-        <StyledValue
-          class="noresize"
-          placeholder="헌혈증을 보내려는 상대방의 헌혈지갑 주소를 입력해주세요."
-        />
+        <StyledValue placeholder="헌혈증을 보내려는 상대방의 헌혈지갑 주소를 입력해주세요." />
 
-        <Margin size="300" />
+        <Margin size="200" />
 
-        <Link href={"/donorDetail"}>
-          <StyledButton backgroundColor="red" width="280" height="50">
-            <Typography color="#fff" size="16">
-              입력하기
-            </Typography>
-          </StyledButton>
-        </Link>
+        <StyledButton
+          backgroundColor="red"
+          width="280"
+          height="50"
+          onClick={() => router.push("/deliveryList")}
+        >
+          <Typography color="#fff" size="16">
+            입력하기
+          </Typography>
+        </StyledButton>
 
         <Margin size="54" />
       </Layout>
