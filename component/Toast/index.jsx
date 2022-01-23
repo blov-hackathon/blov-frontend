@@ -34,7 +34,7 @@ const ToastMsgBox = styled.div`
     animation: ${(props) =>
         props.active == true
             ? css`
-                  ${qrPopUp} 0.8s forwards
+                  ${qrPopUp} 1s forwards
               `
             : ""};
 `;
