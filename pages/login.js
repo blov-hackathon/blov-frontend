@@ -22,20 +22,20 @@ const heartBeat = keyframes`
 `;
 
 const LogoImage = styled.img`
-    height: 100px;
-    animation: ${heartBeat} 2s linear infinite;
+  height: 100px;
+  animation: ${heartBeat} 2s linear infinite;
 `;
 
 const StyledMargin = styled(Margin)``;
 
 const StyledInput = styled(Input)`
-    background-color: #f8f8f8;
-    border-radius: 60px;
-    border: none;
+  background-color: #f8f8f8;
+  border-radius: 60px;
+  border: none;
 `;
 
 const StyledCheck = styled.div`
-    text-align: left;
+  text-align: left;
 `;
 
 const StyledButton = styled(Button)`
@@ -52,11 +52,11 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledText = styled.div`
-    text-align: left;
+  text-align: left;
 `;
 
 const StyledTypo = styled(Typography)`
-    cursor: pointer;
+  cursor: pointer;
 `;
 
 const TypographyBtn = styled(Typography)`
@@ -66,19 +66,19 @@ const TypographyBtn = styled(Typography)`
 `;
 
 export default function Login() {
-    const [content, setContent] = useState("");
-    const [password, setPassword] = useState("");
-    const router = useRouter();
-    const [active, setActive] = useState(false);
-  
-    useEffect(() => {
-        if (active) {
-            setTimeout(() => setActive(false), 2000);
-        }
-    }, [active]);
-  
+  const [content, setContent] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (active) {
+      setTimeout(() => setActive(false), 2000);
+    }
+  }, [active]);
+
   const requestLogin = () => {
-        setActive((active) => !active);
+    setActive((active) => !active);
     axios(`https://api-dev.blov.us/login`, {
       method: "POST",
       crossDomain: true,
@@ -100,7 +100,7 @@ export default function Login() {
         console.log("로그인에 실패했습니다.");
       });
   };
-  
+
   return (
     <Layout>
       <Margin size="100" />
@@ -123,12 +123,17 @@ export default function Login() {
       <Margin size="14" />
 
       <StyledMargin size="60" />
-      <StyledButton backgroundColor="#df2a19" width="300" height="60">
-        <TypographyBtn color="#df2a19" size="16" onClick={requestLogin}>
+      <StyledButton
+        backgroundColor="#df2a19"
+        width="300"
+        height="60"
+        onClick={requestLogin}
+      >
+        <TypographyBtn color="#df2a19" size="16">
           로그인
         </TypographyBtn>
       </StyledButton>
-            {active && <Toast msg={"로그인 중"} width={"100%"} />}
+      {active && <Toast msg={"로그인 중"} width={"100%"} />}
       <Margin size="10" />
       <StyledText>
         <Typography color="#505050" size="12">
