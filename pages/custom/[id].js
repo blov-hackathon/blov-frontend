@@ -135,7 +135,7 @@ export default function Custom1() {
         <TitleTypography>나만의 헌혈증 꾸미기</TitleTypography>
       </TitleGrid>
       <Margin size="20" />
-      <Canvas />
+      <Canvas sampleItem={sampleItem} />
       <StyledInput
         value={textResult}
         onkeyup={onPrintText}
