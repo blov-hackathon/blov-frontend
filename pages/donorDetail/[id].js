@@ -17,6 +17,8 @@ export default function DonorDetail() {
   const { id } = router.query;
   const [token, setToken] = useState();
 
+  const [cardData, setCardData] = useState();
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const item = localStorage.getItem("token");
@@ -28,7 +30,8 @@ export default function DonorDetail() {
   }, []);
 
   useEffect(() => {
-    axios(`https://api-dev.blov.us/getDonorCard/${id}`, {
+    console.log(id)
+    axios(`https://api-dev.blov.us/getDonorDetail/${id}`, {
       method: "GET",
       crossDomain: true,
       headers: {
@@ -36,12 +39,15 @@ export default function DonorDetail() {
       },
     })
       .then((res) => {
-        console.log(res);
+        setCardData(res.data);
+        console.log(res.data);
       })
       .catch((e) => {
         console.log(e);
       });
   }, [id]);
+
+  console.log(cardData)
 
   const StyledButton = styled(Button)`
     border-radius: 100px;
@@ -68,6 +74,10 @@ export default function DonorDetail() {
     box-shadow: 5px 5px 20px #e1e1e1;
     border-radius: 18px;
     border: 1px solid #d4d4d4;
+  `;
+
+  const WarningImage = styled.img`
+    width: 100px;
   `;
 
   const SelectImage = styled(CardImage)`
@@ -109,20 +119,6 @@ export default function DonorDetail() {
     size: 32px;
   `;
 
-  function SelectCardImage() {
-    return (
-      <div>
-        {enable ? (
-          <CardImage src="/temp/temp-card.svg" />
-        ) : (
-          <div>
-            <CheckImage src="/temp/temp-select.svg" />
-            <SelectImage src="/temp/temp-card.svg" />
-          </div>
-        )}
-      </div>
-    );
-  }
 
   function SendButton() {
     return (
@@ -167,34 +163,81 @@ export default function DonorDetail() {
           <TitleTypography>헌혈증 상세보기</TitleTypography>
         </TitleGrid>
         <Margin size="60" />
+        {/*{*/}
+        {/*  cardData && <>*/}
 
-        <SelectCardImage />
+        {/*      <CardImage src = { cardData.cardImage } />*/}
 
-        <Margin size="40" />
+        {/*      <Margin size="40" />*/}
 
-        <Grid>
-          <StyledDesc>헌혈일자</StyledDesc>
-          <StyledValue>2021.01.19</StyledValue>
+        {/*      <Grid>*/}
+        {/*        <StyledDesc>헌혈일자</StyledDesc>*/}
+        {/*        <StyledValue>{ cardData.donorDate }</StyledValue>*/}
 
-          <StyledDesc>헌혈종류</StyledDesc>
-          <StyledValue>전혈 320ML</StyledValue>
+        {/*        <StyledDesc>헌혈종류</StyledDesc>*/}
+        {/*        <StyledValue>{ cardData.donorType } { cardData.donorVolume }ML</StyledValue>*/}
 
-          <StyledDesc>헌혈인</StyledDesc>
-          <StyledValue>김멋사</StyledValue>
+        {/*        <StyledDesc>헌혈인</StyledDesc>*/}
+        {/*        <StyledValue>{ cardData.donorName }</StyledValue>*/}
 
-          <StyledDesc>생년월일</StyledDesc>
-          <StyledValue>2021.01.19</StyledValue>
+        {/*        <StyledDesc>생년월일</StyledDesc>*/}
+        {/*        <StyledValue>{ cardData.donorBirth }</StyledValue>*/}
 
-          <StyledDesc>혈액원명</StyledDesc>
-          <StyledValue>인천멋사혈액원</StyledValue>
+        {/*        <StyledDesc>혈액원명</StyledDesc>*/}
+        {/*        <StyledValue>{ cardData.donorPlace }</StyledValue>*/}
 
-          <StyledDesc>증서번호</StyledDesc>
-          <StyledValue>21-23-456789</StyledValue>
-        </Grid>
+        {/*        <StyledDesc>증서번호</StyledDesc>*/}
+        {/*        <StyledValue>{ cardData.cardId }</StyledValue>*/}
+        {/*      </Grid>*/}
 
-        <Margin size="40" />
+        {/*    </>*/}
+        {/*}*/}
 
-        <SendButton />
+
+
+        {
+            cardData
+            ?
+                <>
+
+              <CardImage src = { cardData.cardImage } />
+
+              <Margin size="40" />
+
+              <Grid>
+                <StyledDesc>헌혈일자</StyledDesc>
+                <StyledValue>{ cardData.donorDate }</StyledValue>
+
+                <StyledDesc>헌혈종류</StyledDesc>
+                <StyledValue>{ cardData.donorType } { cardData.donorVolume }ML</StyledValue>
+
+                <StyledDesc>헌혈인</StyledDesc>
+                <StyledValue>{ cardData.donorName }</StyledValue>
+
+                <StyledDesc>생년월일</StyledDesc>
+                <StyledValue>{ cardData.donorBirth }</StyledValue>
+
+                <StyledDesc>혈액원명</StyledDesc>
+                <StyledValue>{ cardData.donorPlace }</StyledValue>
+
+                <StyledDesc>증서번호</StyledDesc>
+                <StyledValue>{ cardData.cardId }</StyledValue>
+                <Margin size="40" />
+              </Grid>
+
+                  <SendButton />
+            </>
+                :
+                <>
+                  <WarningImage src="/temp/temp-warning.png" />
+                  <Margin size="40" />
+                  <h4>현재 사용할 수 없는 헌혈증 입니다.</h4>
+                </>
+        }
+
+
+
+
       </Layout>
       <Footer />
     </>
