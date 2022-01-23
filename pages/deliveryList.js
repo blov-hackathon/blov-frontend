@@ -128,63 +128,12 @@ export default function DeliveryList() {
       });
   }, [token]);
 
-  const deliveryData = [
-    {
-      senderName: "김멋사",
-      receiverName: "박멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "박멋사",
-      receiverName: "김멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "박멋사",
-      receiverName: "송멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "한멋사",
-      receiverName: "박멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "이멋사",
-      receiverName: "박멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "신멋사",
-      receiverName: "박멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "박멋사",
-      receiverName: "손멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "손멋사",
-      receiverName: "박멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-  ];
-
   return (
     <>
       <Flex justify="center" align="center">
         <TitleWrapper>
           <BackBtn
-            onClick={() => router.push("/login")}
+            onClick={() => router.push("/mywallet")}
             backgroundColor="#d84d40"
           >
             <BackButton src="/temp/temp-back-white.svg" />
@@ -198,7 +147,9 @@ export default function DeliveryList() {
           <>
             <ElementWrapper
               justify="space-around"
-              onClick={() => router.push("/donorDetail")}
+              onClick={() =>
+                window.open(`https://rinkeby.etherscan.io/tx/${data.txid}`)
+              }
             >
               <BackCircle
                 rgba={
