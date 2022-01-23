@@ -30,7 +30,6 @@ export default function DonorDetail() {
   }, []);
 
   useEffect(() => {
-    console.log(id)
     axios(`https://api-dev.blov.us/getDonorDetail/${id}`, {
       method: "GET",
       crossDomain: true,
@@ -40,14 +39,13 @@ export default function DonorDetail() {
     })
       .then((res) => {
         setCardData(res.data);
-        console.log(res.data);
       })
       .catch((e) => {
         console.log(e);
       });
   }, [id]);
 
-  console.log(cardData)
+  console.log(cardData);
 
   const StyledButton = styled(Button)`
     border-radius: 100px;
@@ -118,7 +116,6 @@ export default function DonorDetail() {
     color: #191919;
     size: 32px;
   `;
-
 
   function SendButton() {
     return (
@@ -193,51 +190,44 @@ export default function DonorDetail() {
         {/*    </>*/}
         {/*}*/}
 
+        {cardData ? (
+          <>
+            <CardImage src={cardData.cardImage} />
 
+            <Margin size="40" />
 
-        {
-            cardData
-            ?
-                <>
+            <Grid>
+              <StyledDesc>헌혈일자</StyledDesc>
+              <StyledValue>{cardData.donorDate}</StyledValue>
 
-              <CardImage src = { cardData.cardImage } />
+              <StyledDesc>헌혈종류</StyledDesc>
+              <StyledValue>
+                {cardData.donorType} {cardData.donorVolume}ML
+              </StyledValue>
 
+              <StyledDesc>헌혈인</StyledDesc>
+              <StyledValue>{cardData.donorName}</StyledValue>
+
+              <StyledDesc>생년월일</StyledDesc>
+              <StyledValue>{cardData.donorBirth}</StyledValue>
+
+              <StyledDesc>혈액원명</StyledDesc>
+              <StyledValue>{cardData.donorPlace}</StyledValue>
+
+              <StyledDesc>증서번호</StyledDesc>
+              <StyledValue>{cardData.cardId}</StyledValue>
               <Margin size="40" />
+            </Grid>
 
-              <Grid>
-                <StyledDesc>헌혈일자</StyledDesc>
-                <StyledValue>{ cardData.donorDate }</StyledValue>
-
-                <StyledDesc>헌혈종류</StyledDesc>
-                <StyledValue>{ cardData.donorType } { cardData.donorVolume }ML</StyledValue>
-
-                <StyledDesc>헌혈인</StyledDesc>
-                <StyledValue>{ cardData.donorName }</StyledValue>
-
-                <StyledDesc>생년월일</StyledDesc>
-                <StyledValue>{ cardData.donorBirth }</StyledValue>
-
-                <StyledDesc>혈액원명</StyledDesc>
-                <StyledValue>{ cardData.donorPlace }</StyledValue>
-
-                <StyledDesc>증서번호</StyledDesc>
-                <StyledValue>{ cardData.cardId }</StyledValue>
-                <Margin size="40" />
-              </Grid>
-
-                  <SendButton />
-            </>
-                :
-                <>
-                  <WarningImage src="/temp/temp-warning.png" />
-                  <Margin size="40" />
-                  <h4>현재 사용할 수 없는 헌혈증 입니다.</h4>
-                </>
-        }
-
-
-
-
+            <SendButton />
+          </>
+        ) : (
+          <>
+            <WarningImage src="/temp/temp-warning.png" />
+            <Margin size="40" />
+            <h4>현재 사용할 수 없는 헌혈증 입니다.</h4>
+          </>
+        )}
       </Layout>
       <Footer />
     </>
