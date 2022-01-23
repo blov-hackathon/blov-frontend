@@ -69,7 +69,7 @@ export default function Wallet() {
         <>
             <Layout>
                 <Header>
-                    <Margin size="20" />
+                    <Margin size="15" />
                     <BoldTypography size="24">나의 헌혈지갑</BoldTypography>
                     <Margin size="10" />
                     <div style={Menu}>
