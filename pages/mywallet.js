@@ -2,7 +2,7 @@ import Layout from "../component/Layout";
 import Typography from "../component/Typography";
 import NFT from "../component/NFT";
 import axios from "axios";
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import _ from "lodash";
 import Margin from "../component/Margin";
@@ -48,51 +48,52 @@ export default function Wallet() {
     }
   }, []);
 
-  useEffect(() => {
-    axios(`https://api-dev.blov.us/getDonorCard`, {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    })
-      .then((res) => {
-        setCardList(res.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, [token]);
-  return (
-    <>
-      <Layout>
-        <Header>
-          <Margin size="30" />
-          <BoldTypography size="24">나의 헌혈지갑</BoldTypography>
-          <Margin size="10" />
-          <div style={Menu}>
-            <Typography>NFT</Typography>
-          </div>
-        </Header>
-        <Margin size="40" />
+    useEffect(() => {
+        axios(`https://api-dev.blov.us/getDonorCard`, {
+            method: "GET",
+            crossDomain: true,
+            headers: {
+                Authorization: `Token ${token}`,
+            },
+        })
+            .then((res) => {
+                setCardList(res.data);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }, [token]);
 
-        <Carousel
-          height="400px"
-          width="240px"
-          slidesToShow={1} // 한 번에 보여줄 슬라이드의 개수
-          cellAlign="center"
-          renderCenterLeftControls={({ previousSlide }) => null}
-          renderCenterRightControls={({ nextSlide }) => null}
-          renderBottomCenterControls={() => null}
-        >
-          {_.map(cardList, (nftData) => (
-            <NTFborder>
-              <NFT data={nftData} />
-            </NTFborder>
-          ))}
-        </Carousel>
-      </Layout>
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <Layout>
+                <Header>
+                    <Margin size="30" />
+                    <BoldTypography size="24">나의 헌혈지갑</BoldTypography>
+                    <Margin size="10" />
+                    <div style={Menu}>
+                        <Typography>NFT</Typography>
+                    </div>
+                </Header>
+                <Margin size="40" />
+
+                <Carousel
+                    height="400px"
+                    width="240px"
+                    slidesToShow={1} // 한 번에 보여줄 슬라이드의 개수
+                    cellAlign="center"
+                    renderCenterLeftControls={({ previousSlide }) => null}
+                    renderCenterRightControls={({ nextSlide }) => null}
+                    renderBottomCenterControls={() => null}
+                >
+                    {_.map(cardList, (nftData) => (
+                        <NTFborder>
+                            <NFT data={nftData} />
+                        </NTFborder>
+                    ))}
+                </Carousel>
+            </Layout>
+            <Footer />
+        </>
+    );
 }
