@@ -11,8 +11,6 @@ import axios from "axios";
 import Margin from "../component/Margin";
 
 const TitleWrapper = styled.div`
-  position: sticky;
-  top: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -20,7 +18,6 @@ const TitleWrapper = styled.div`
   height: 90px;
   background-color: #d84d40;
   opacity: 1;
-  z-index: 5;
 `;
 
 const BackBtn = styled(Button)`
@@ -89,6 +86,12 @@ const StyledText = styled(Typography)`
   color: ${(props) => props.color};
 `;
 
+const StyledFlex = styled(Flex)`
+  position: sticky;
+  top: 0;
+  z-index: 5;
+`;
+
 export default function DeliveryList() {
   const router = useRouter();
   const [token, setToken] = useState();
@@ -130,7 +133,7 @@ export default function DeliveryList() {
 
   return (
     <>
-      <Flex justify="center" align="center">
+      <StyledFlex justify="center" align="center">
         <TitleWrapper>
           <Margin size="35" />
           <Flex justify="space-around" align="center">
@@ -144,7 +147,7 @@ export default function DeliveryList() {
             <div />
           </Flex>
         </TitleWrapper>
-      </Flex>
+      </StyledFlex>
       <Layout>
         {_.map(deliveryList, (data) => (
           <>
