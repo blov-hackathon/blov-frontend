@@ -38,6 +38,7 @@ const Subtitle = styled.div`
 
 const StyledButton = styled(Button)`
   border-radius: 100px;
+  font-size: 20px;
   border: none;
   cursor: pointer;
   color: white;
@@ -65,7 +66,7 @@ export default function Template({ animation, title, subtitle, last }) {
           <Margin size={60} />
           <StyledButton
             backgroundColor="#DF2A19"
-            width="300"
+            width="230"
             height="50"
             onClick={() => router.push("/login")}
           >

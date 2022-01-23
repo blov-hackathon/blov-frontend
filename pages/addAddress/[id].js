@@ -116,7 +116,7 @@ export default function DonorDetail() {
     <>
       <Layout>
         <TitleGrid>
-          <BackBtn onClick={() => router.push("/camera")}>
+          <BackBtn onClick={() => router.push("/mywallet")}>
             <BackButton src="/temp/temp-back.svg" />
           </BackBtn>
 
@@ -134,12 +134,12 @@ export default function DonorDetail() {
 
         <Margin size="200" />
         <StyledButton
-          backgroundColor="red"
+          backgroundColor="#D6D6D6"
           width="280"
           height="50"
           onClick={sendDonorCard}
         >
-          <Typography color="#fff" size="16">
+          <Typography color="black" size="16">
             입력하기
           </Typography>
         </StyledButton>
