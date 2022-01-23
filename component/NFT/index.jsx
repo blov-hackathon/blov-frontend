@@ -68,6 +68,21 @@ const NFTimageSource = styled.img`
     border-radius: 18px;
 `;
 
+const ShareLogo = styled.img`
+    height: 18px;
+    z-index: 10;
+`;
+
+const ShareLogoBox = styled.div`
+    margin-top: 20px;
+    margin-left: 200px;
+    float: right;
+    width: 30px;
+    height: 30px;
+    z-index: 5;
+    position: absolute;
+`;
+
 const LogoImage = styled.img`
     //margin-left: 40px;
     float: right;
@@ -75,44 +90,29 @@ const LogoImage = styled.img`
     height: 40px;
 `;
 
-
-
-function NFTgold() {
-    return (
-        <NFTstyle>
-            <Margin size="15" />
-            <StyledTypography size="17"></StyledTypography>
-            <LogoImage src="/login/main-icon.svg" />
-            <NFTbackground>
-                <Margin size="180" />
-                <StyledTypography size="15" color="#FFCC00">
-                    영예의 금장
-                </StyledTypography>
-                <StyledTypography size="24" color="#FFCC00">
-                    헌혈 10회 달성!
-                </StyledTypography>
-                <ShareLogo src="/mywallet/share-icon-gold.svg" />
-            </NFTbackground>
-            <NFTfooter color="#FFCC00">
-                <Margin size="40" />
-                <StyledTypography color="white">01-22-516</StyledTypography>
-            </NFTfooter>
-        </NFTstyle>
-    );
-}
-
 export default function NFT(data) {
     const router = useRouter();
     const [nftData, setNftData] = useState(data.data);
+    const [active, setActive] = useState(false); // 저장 완료 토스트 메시지용 State
     const nftRef = useRef();
     const myNft = nftRef.current;
 
-    
+    useEffect(() => {
+        if (active) {
+            setTimeout(() => setActive(false), 2000);
+        }
+    }, [active]);
 
-    if (nftData.cardId == "0000") {
+    const handleDownloadNFT = () => {
+        domtoimage.toBlob(myNft).then((blob) => {
+            saveAs(blob, "my_NFT_blood_donation_from_BLOV.png");
+        });
+        setActive((active) => !active);
+    };
+    /*if (nftData.cardId == "0000") {
         // 특정 case (금장)
         return <NFTgold />;
-    }
+    }*/
     return (
         // 일반 case
         <NFTstyle>
@@ -133,7 +133,11 @@ export default function NFT(data) {
                 />
             </NFTimagebox>
             <Margin size="270" />
-           
+            <ShareLogoBox onClick={handleDownloadNFT}>
+                {" "}
+                <ShareLogo src="/mywallet/share-icon.svg" />
+            </ShareLogoBox>
+            {active && <Toast msg={"저장 완료!"} width={"100%"} />}
         </NFTstyle>
     );
 }
