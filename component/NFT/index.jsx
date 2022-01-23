@@ -136,10 +136,15 @@ export default function NFT(data) {
         />
       </NFTimagebox>
       <Margin size="270" />
-      <ShareLogoBox onClick={handleDownloadNFT}>
-        {" "}
-        <ShareLogo src="/mywallet/share-icon.svg" />
-      </ShareLogoBox>
+      {nftData && nftData.cardImage == null ? (
+        <></>
+      ) : (
+        <ShareLogoBox onClick={handleDownloadNFT}>
+          {" "}
+          <ShareLogo src="/mywallet/share-icon.svg" />
+        </ShareLogoBox>
+      )}
+
       {active && <Toast msg={"저장 완료!"} width={"100%"} />}
     </NFTstyle>
   );
