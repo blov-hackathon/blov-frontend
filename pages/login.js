@@ -5,10 +5,24 @@ import Button from "../component/Button";
 import Margin from "../component/Margin";
 import Input from "../component/Input";
 import styled, { css } from "styled-components";
+import axios from "axios";
+import { keyframes } from "styled-components";
+import { useRouter } from "next/router";
 import Link from "next/link";
+
+const heartBeat = keyframes`
+  0% { transform: translate(10px, 10px) scale(1); }
+  25% { transform: translate(10px, 10px) scale(1); }
+  30% { transform: translate(10px, 10px) scale(1.4); }
+  50% { transform: translate(10px, 10px) scale(1.2); }
+  70% { transform: translate(10px, 10px) scale(1.4); }
+  90% { transform: translate(10px, 10px) scale(1); }
+  100% { transform:translate(10px, 10px) scale(1); }
+`;
 
 const LogoImage = styled.img`
   height: 100px;
+  animation: ${heartBeat} 2s linear infinite;
 `;
 
 const StyledMargin = styled(Margin)``;
@@ -26,21 +40,53 @@ const StyledCheck = styled.div`
 const StyledButton = styled(Button)`
   border-radius: 100px;
   border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffdeeb;
+  }
 `;
 
 const StyledText = styled.div`
   text-align: left;
 `;
 
+const StyledTypo = styled(Typography)`
+  cursor: pointer;
+`;
+
 export default function Login() {
   const [content, setContent] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
+  const requestLogin = () => {
+    axios(`https://api-dev.blov.us/login`, {
+      method: "POST",
+      crossDomain: true,
+      header: {
+        "content-type": "application/json",
+      },
+      data: {
+        phone_number: content,
+        password: password,
+      },
+    })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        console.log("로그인에 성공했습니다.");
+        router.push("/mywallet");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("로그인에 실패했습니다.");
+      });
+  };
   return (
     <Layout>
       <Margin size="100" />
       <LogoImage src="/login/main-icon.svg" />
-      <Margin size="20" />
+      <Margin size="50" />
       <StyledInput
         id
         placeholder="전화번호 (010XXXXXXXX)"
@@ -52,6 +98,7 @@ export default function Login() {
         password
         placeholder="패스워드"
         value={password}
+        type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
       <Margin size="10" />
@@ -62,7 +109,7 @@ export default function Login() {
       </StyledCheck>
       <StyledMargin size="60" />
       <StyledButton backgroundColor="red" width="300" height="60">
-        <Typography color="#fff" size="16">
+        <Typography color="#fff" size="16" onClick={requestLogin}>
           로그인
         </Typography>
       </StyledButton>
@@ -73,9 +120,9 @@ export default function Login() {
         </Typography>
         &nbsp;
         <Link href={"/join"}>
-          <Typography color="#DF2A19" size="12">
+          <StyledTypo color="#DF2A19" size="12">
             회원가입하기
-          </Typography>
+          </StyledTypo>
         </Link>
       </StyledText>
     </Layout>

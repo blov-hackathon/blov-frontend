@@ -15,7 +15,7 @@ const Input = styled.input`
   }
 
   &:focus {
-    border: 1px solid #3584df;
+    border: 1px solid #df2a19;
     box-shadow: 3px -3px 0px #bad1f4, 3px 3px 0px #bad1f4, -3px -3px 0px #bad1f4,
       -3px 3px 0px #bad1f4;
   }
