@@ -4,9 +4,11 @@ import Typography from "../component/Typography";
 import Button from "../component/Button";
 import Margin from "../component/Margin";
 import Input from "../component/Input";
+
 import styled, { css } from "styled-components";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Select from "react-select";
 
 const LineMargin = styled(Margin)`
   background-color: #df2a19;
@@ -38,13 +40,17 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const BackBtn = styled(Button)`
-  border: none;
+const StyledInput2 = styled(StyledInput)`
+  position: absolute;
+  margin-top: 150px;
 `;
 
-const BackButton = styled.img`
-  width: 16px;
-  cursor: pointer;
+const StyledSelect = styled(Select)`
+  position: relative;
+  width: 220px;
+  margin-top: 16px;
+  margin-left: 16px;
+  background-color: #f8f8f8;
 `;
 
 export default function Join() {
@@ -81,6 +87,18 @@ export default function Join() {
     const item = localStorage.getItem("myCat");
     console.log(item);
   }
+
+  const bloodtypes = [
+    { value: "A+", label: "A형 Rh+" },
+    { value: "A-", label: "A형 Rh-" },
+    { value: "B+", label: "B형 Rh+" },
+    { value: "B-", label: "B형 Rh-" },
+    { value: "AB+", label: "AB형 Rh+" },
+    { value: "AB-", label: "AB형 Rh-" },
+    { value: "O+", label: "O형 Rh+" },
+    { value: "O-", label: "O형 Rh-" },
+  ];
+
   return (
     <Layout>
       <Margin size="40" />
@@ -100,7 +118,7 @@ export default function Join() {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <Margin size="10" />
+      <Margin size="20" />
       <StyledInput
         id
         placeholder="전화번호를 입력해주세요."
@@ -108,13 +126,16 @@ export default function Join() {
         onChange={(e) => setPhone(e.target.value)}
       />
       <Margin size="10" />
-      <StyledInput
-        blood
-        placeholder="혈액형을 입력해주세요.(ex. A형 Rh+)"
-        value={bloodtype}
-        onChange={(e) => setBloodtype(e.target.value)}
+
+      <StyledInput2 blood />
+
+      <StyledSelect
+        options={bloodtypes}
+        // onChange={(e) => setBloodtype(e.target.value)}
       />
-      <Margin size="10" />
+
+      <Margin size="30" />
+
       <StyledInput
         password
         placeholder="패스워드를 입력해주세요."
