@@ -27,7 +27,7 @@ const StyledText = styled(Typography)`
 `;
 const FooterWrapper = styled.div`
   margin: 0 auto;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   display: flex;
   align-items: center;

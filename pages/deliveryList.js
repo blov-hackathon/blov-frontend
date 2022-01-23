@@ -8,13 +8,13 @@ import _ from "lodash";
 import Footer from "../component/Footer";
 import Flex from "../component/Flex";
 import axios from "axios";
+import Margin from "../component/Margin";
 
 const TitleWrapper = styled.div`
   position: sticky;
   top: 0;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
   width: 100%;
   max-width: 375px;
   height: 90px;
@@ -35,7 +35,7 @@ const BackButton = styled.img`
 const TitleTypography = styled(Typography)`
   font-weight: bold;
   color: #ffffff;
-  font-size: 22px;
+  font-size: 20px;
   text-align: center;
 `;
 
@@ -128,69 +128,21 @@ export default function DeliveryList() {
       });
   }, [token]);
 
-  const deliveryData = [
-    {
-      senderName: "김멋사",
-      receiverName: "박멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "박멋사",
-      receiverName: "김멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "박멋사",
-      receiverName: "송멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "한멋사",
-      receiverName: "박멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "이멋사",
-      receiverName: "박멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "신멋사",
-      receiverName: "박멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "박멋사",
-      receiverName: "손멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-    {
-      senderName: "손멋사",
-      receiverName: "박멋사",
-      date: "2021.01.19",
-      bloodKind: "전혈 320ML",
-    },
-  ];
-
   return (
     <>
       <Flex justify="center" align="center">
         <TitleWrapper>
-          <BackBtn
-            onClick={() => router.push("/login")}
-            backgroundColor="#d84d40"
-          >
-            <BackButton src="/temp/temp-back-white.svg" />
-          </BackBtn>
-          <TitleTypography>헌혈증 전달내역</TitleTypography>
-          <div />
+          <Margin size="35" />
+          <Flex justify="space-around" align="center">
+            <BackBtn
+              onClick={() => router.push("/mywallet")}
+              backgroundColor="#d84d40"
+            >
+              <BackButton src="/temp/temp-back-white.svg" />
+            </BackBtn>
+            <TitleTypography>헌혈증 전달내역</TitleTypography>
+            <div />
+          </Flex>
         </TitleWrapper>
       </Flex>
       <Layout>
@@ -198,7 +150,9 @@ export default function DeliveryList() {
           <>
             <ElementWrapper
               justify="space-around"
-              onClick={() => router.push("/donorDetail")}
+              onClick={() =>
+                window.open(`https://rinkeby.etherscan.io/tx/${data.txid}`)
+              }
             >
               <BackCircle
                 rgba={
@@ -250,7 +204,9 @@ export default function DeliveryList() {
           </>
         ))}
       </Layout>
-      <Footer />
+      <Flex justify="center" align="center">
+        <Footer />
+      </Flex>
     </>
   );
 }

@@ -1,59 +1,84 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Layout from "../component/Layout";
 import Typography from "../component/Typography";
 import Button from "../component/Button";
 import Margin from "../component/Margin";
 import Input from "../component/Input";
+
 import styled, { css } from "styled-components";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Toast from "../component/Toast";
+import Select from "react-select";
 
 const LineMargin = styled(Margin)`
-  background-color: #df2a19;
-  width: 40px;
-  text-align: left;
-  margin-bottom: 5px;
+    background-color: #df2a19;
+    width: 40px;
+    text-align: left;
+    margin-bottom: 5px;
 `;
 
 const StyledMargin = styled(Margin)``;
 
 const StyledInput = styled(Input)`
-  background-color: #f8f8f8;
-  border-radius: 60px;
-  border: none;
+    background-color: #f8f8f8;
+    border-radius: 60px;
+    border: none;
 `;
 
 const StyledTitle = styled.div`
-  text-align: left;
-  font-weight: 600;
+    text-align: left;
+    font-weight: 600;
 `;
 
 const StyledButton = styled(Button)`
   border-radius: 100px;
   border: none;
   cursor: pointer;
+  background-color: #fff;
+  border: 2px solid #df2a19;
 
   &:hover {
-    background-color: #ffdeeb;
+    background-color: #df2a19;
+    color: #fff;
   }
 `;
 
-const BackBtn = styled(Button)`
-  border: none;
+const StyledInput2 = styled(StyledInput)`
+  position: absolute;
+  margin-top: 150px;
+  background-color: #fff;
 `;
 
-const BackButton = styled.img`
-  width: 16px;
-  cursor: pointer;
+const StyledSelect = styled(Select)`
+  position: relative;
+  width: 240px;
+  margin-top: 16px;
+  margin-left: 40px;
+  background-color: #f8f8f8;
+`;
+
+const TypographyBtn = styled(Typography)`
+  color: #df2a19;
+  &:hover {
+    color: #fff;
+  }
 `;
 
 export default function Join() {
-  const [content, setContent] = useState("");
-  const [phone, setPhone] = useState("");
-  const [bloodtype, setBloodtype] = useState("");
-  const [password, setPassword] = useState("");
-  const router = useRouter();
+    const [content, setContent] = useState("");
+    const [phone, setPhone] = useState("");
+    const [bloodtype, setBloodtype] = useState("");
+    const [password, setPassword] = useState("");
+    const router = useRouter();
+    const [active, setActive] = useState(false);
 
+    useEffect(() => {
+        if (active) {
+            setTimeout(() => setActive(false), 2000);
+        }
+    }, [active]);
+  
   const requestJoin = () => {
     axios(`https://api-dev.blov.us/register`, {
       method: "POST",
@@ -81,6 +106,18 @@ export default function Join() {
     const item = localStorage.getItem("myCat");
     console.log(item);
   }
+
+  const bloodtypes = [
+    { value: "A+", label: "A형 Rh+" },
+    { value: "A-", label: "A형 Rh-" },
+    { value: "B+", label: "B형 Rh+" },
+    { value: "B-", label: "B형 Rh-" },
+    { value: "AB+", label: "AB형 Rh+" },
+    { value: "AB-", label: "AB형 Rh-" },
+    { value: "O+", label: "O형 Rh+" },
+    { value: "O-", label: "O형 Rh-" },
+  ];
+
   return (
     <Layout>
       <Margin size="40" />
@@ -100,7 +137,7 @@ export default function Join() {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <Margin size="10" />
+      <Margin size="20" />
       <StyledInput
         id
         placeholder="전화번호를 입력해주세요."
@@ -108,13 +145,16 @@ export default function Join() {
         onChange={(e) => setPhone(e.target.value)}
       />
       <Margin size="10" />
-      <StyledInput
-        blood
-        placeholder="혈액형을 입력해주세요.(ex. A형 Rh+)"
-        value={bloodtype}
-        onChange={(e) => setBloodtype(e.target.value)}
+
+      <StyledInput2 blood />
+
+      <StyledSelect
+        options={bloodtypes}
+        // onChange={(e) => setBloodtype(e.target.value)}
       />
-      <Margin size="10" />
+
+      <Margin size="30" />
+
       <StyledInput
         password
         placeholder="패스워드를 입력해주세요."
@@ -124,15 +164,16 @@ export default function Join() {
       />
       <StyledMargin size="60" />
       <StyledButton
-        backgroundColor="red"
+        color="#df2a19"
         width="280"
         height="50"
         onClick={requestJoin}
       >
-        <Typography color="#fff" size="16">
+        <TypographyBtn color="black" size="16">
           회원가입
-        </Typography>
+        </TypographyBtn>
       </StyledButton>
+            {active && <Toast msg={"가입 완료!"} width={"100%"} />}
     </Layout>
   );
 }

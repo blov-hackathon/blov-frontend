@@ -4,6 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Typography from "../Typography";
 import Margin from "../Margin";
+import Toast from "../Toast";
 import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import { ToastContainer, toast } from "react-toastify";
@@ -67,19 +68,13 @@ const NFTimageSource = styled.img`
   border-radius: 18px;
 `;
 
-const LogoImage = styled.img`
-  //margin-left: 40px;
-  float: right;
-  margin-right: 10px;
-  height: 40px;
-`;
-
 const ShareLogo = styled.img`
   height: 18px;
+  z-index: 10;
 `;
 
 const ShareLogoBox = styled.div`
-  margin-top: 15px;
+  margin-top: 20px;
   margin-left: 200px;
   float: right;
   width: 30px;
@@ -88,56 +83,39 @@ const ShareLogoBox = styled.div`
   position: absolute;
 `;
 
-function NFTgold() {
-  return (
-    <NFTstyle>
-      <Margin size="15" />
-      <StyledTypography size="17"></StyledTypography>
-      <LogoImage src="/login/main-icon.svg" />
-      <NFTbackground>
-        <Margin size="180" />
-        <StyledTypography size="15" color="#FFCC00">
-          영예의 금장
-        </StyledTypography>
-        <StyledTypography size="24" color="#FFCC00">
-          헌혈 10회 달성!
-        </StyledTypography>
-        <ShareLogo src="/mywallet/share-icon-gold.svg" />
-      </NFTbackground>
-      <NFTfooter color="#FFCC00">
-        <Margin size="40" />
-        <StyledTypography color="white">01-22-516</StyledTypography>
-      </NFTfooter>
-    </NFTstyle>
-  );
-}
+const LogoImage = styled.img`
+  //margin-left: 40px;
+  float: right;
+  margin-right: 10px;
+  height: 40px;
+`;
 
 export default function NFT(data) {
   const router = useRouter();
-  const [isActive, setIsActive] = useState(false); // 저장 완료 토스트 메시지용 State
   const [nftData, setNftData] = useState(data.data);
+  const [active, setActive] = useState(false); // 저장 완료 토스트 메시지용 State
   const nftRef = useRef();
+  const myNft = nftRef.current;
+
+  useEffect(() => {
+    if (active) {
+      setTimeout(() => setActive(false), 2000);
+    }
+  }, [active]);
 
   const handleDownloadNFT = () => {
-    const myNft = nftRef.current;
+    window.open(
+      `${data.data.cardImage}?download=1&bcdn_filename=my_NFT_blood_donation_from_BLOV.png`
+    );
     domtoimage.toBlob(myNft).then((blob) => {
       saveAs(blob, "my_NFT_blood_donation_from_BLOV.png");
     });
-    toast("저장 완료!\n내 헌혈증을 공유해보세요", {
-      position: "bottom-center",
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      progress: 0,
-    });
+    setActive((active) => !active);
   };
-
-  if (nftData.cardId == "0000") {
-    // 특정 case (금장)
-    return <NFTgold />;
-  }
+  /*if (nftData.cardId == "0000") {
+        // 특정 case (금장)
+        return <NFTgold />;
+    }*/
   return (
     // 일반 case
     <NFTstyle>
@@ -158,11 +136,16 @@ export default function NFT(data) {
         />
       </NFTimagebox>
       <Margin size="270" />
-      <ShareLogoBox onClick={handleDownloadNFT}>
-        {" "}
-        <ShareLogo src="/mywallet/share-icon.svg" />
-        <ToastContainer />
-      </ShareLogoBox>
+      {nftData && nftData.cardImage == null ? (
+        <></>
+      ) : (
+        <ShareLogoBox onClick={handleDownloadNFT}>
+          {" "}
+          <ShareLogo src="/mywallet/share-icon.svg" />
+        </ShareLogoBox>
+      )}
+
+      {active && <Toast msg={"저장 완료!"} width={"100%"} />}
     </NFTstyle>
   );
 }

@@ -2,7 +2,7 @@ import Layout from "../component/Layout";
 import Typography from "../component/Typography";
 import NFT from "../component/NFT";
 import axios from "axios";
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import _ from "lodash";
 import Margin from "../component/Margin";
@@ -11,58 +11,60 @@ import Footer from "../component/Footer";
 import Carousel from "nuka-carousel";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Flex from "../component/Flex";
 
 const BoldTypography = styled(Typography)`
-    font-weight: bold;
+  font-weight: bold;
 `;
 
 const Header = styled.div`
-    width: 300px;
-    text-align: left;
+  width: 300px;
+  text-align: left;
 `;
 
 const NTFborder = styled.div`
-    flex-direction: column;
-    justify-content: center;
-    //box-shadow: -10px 20px 20px #000; // 그림자 이상해서 일단 주석 처리
+  flex-direction: column;
+  justify-content: center;
+  //box-shadow: -10px 20px 20px #000; // 그림자 이상해서 일단 주석 처리
 `;
 
 const Menu = {
-    alignItems: "left",
+  alignItems: "left",
 };
 
 export default function Wallet() {
-    const [nftData, setNftData] = useState([]);
-    const [cardList, setCardList] = useState();
-    const router = useRouter();
+  const [nftData, setNftData] = useState([]);
+  const [cardList, setCardList] = useState();
+  const router = useRouter();
 
-    const [token, setToken] = useState();
+  const [token, setToken] = useState();
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            const item = localStorage.getItem("token");
-            setToken(item);
-            if (!item) {
-                router.push("/login");
-            }
-        }
-    }, []);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const item = localStorage.getItem("token");
+      setToken(item);
+      if (!item) {
+        router.push("/login");
+      }
+    }
+  }, []);
 
-    useEffect(() => {
-        axios(`https://api-dev.blov.us/getDonorCard`, {
-            method: "GET",
-            crossDomain: true,
-            headers: {
-                Authorization: `Token ${token}`,
-            },
-        })
-            .then((res) => {
-                setCardList(res.data);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    }, [token]);
+  useEffect(() => {
+    axios(`https://api-dev.blov.us/getDonorCard`, {
+      method: "GET",
+      crossDomain: true,
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => {
+        setCardList(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [token]);
+
   return (
     <>
       <Layout>
@@ -92,7 +94,9 @@ export default function Wallet() {
           ))}
         </Carousel>
       </Layout>
-      <Footer />
+      <Flex justify="center" align="center">
+        <Footer />
+      </Flex>
     </>
   );
 }

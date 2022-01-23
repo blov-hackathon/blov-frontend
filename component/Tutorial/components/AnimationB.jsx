@@ -16,7 +16,6 @@ const Wrapper = styled.div`
 
 const Insta = styled.img`
   opacity: 0;
-  height: 270px;
   width: 100%;
   animation-name: ${(props) => props.animation && fadeIn};
   animation-duration: 3s;
@@ -25,7 +24,7 @@ const Insta = styled.img`
 
 const AnimationB = ({ animation }) => (
   <Wrapper>
-    <Insta animation={animation} src="/tutorial/insta.jpg" />
+    <Insta animation={animation} src="/tutorial/insta.png" />
   </Wrapper>
 );
 
