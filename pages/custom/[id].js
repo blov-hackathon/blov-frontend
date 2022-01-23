@@ -5,6 +5,7 @@ import Button from "../../component/Button";
 import Margin from "../../component/Margin";
 import styled, { css } from "styled-components";
 import Link from "next/link";
+import axios from "axios";
 
 import { useRouter } from "next/router";
 import samples from "../../public/data/samples";
@@ -77,6 +78,9 @@ const StyledInput = styled(Input)`
 
 export default function Custom1() {
   const router = useRouter();
+  const { id } = router.query;
+  const [token, setToken] = useState();
+
   const [sampleItem, setSampleItem] = useState();
   const [textResult, setTextResult] = useState("");
 
@@ -86,8 +90,37 @@ export default function Custom1() {
   };
 
   useEffect(() => {
-    console.log(sampleItem);
-  }, [sampleItem]);
+    if (typeof window !== "undefined") {
+      const item = localStorage.getItem("token");
+      setToken(item);
+      if (!item) {
+        router.push("/login");
+      }
+    }
+  }, []);
+
+  const makeDonorCard = () => {
+    console.log(sampleItem.id);
+    axios(`https://api-dev.blov.us/makeDonorCard/${id}`, {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+      data: {
+        inputImageId: sampleItem.id,
+        inputText: textResult,
+      },
+    })
+      .then((res) => {
+        console.log("NFT 생성에 성공했습니다.");
+        router.push(`/donorDetail/${id}`);
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("NFT 생성에 실패했습니다.");
+      });
+  };
 
   return (
     <Layout>
@@ -119,13 +152,17 @@ export default function Custom1() {
         />
       </CustomContainer>
       <Margin size="40" />
-      <Link href={"/donorDetail"}>
-        <StyledButton backgroundColor="#9B9B9B" width="280" height="50">
-          <Typography color="#fff" size="16">
-            헌혈증 꾸미기 완료
-          </Typography>
-        </StyledButton>
-      </Link>
+
+      <StyledButton
+        backgroundColor="#9B9B9B"
+        width="280"
+        height="50"
+        onClick={makeDonorCard}
+      >
+        <Typography color="#fff" size="16">
+          헌혈증 꾸미기 완료
+        </Typography>
+      </StyledButton>
     </Layout>
   );
 }
