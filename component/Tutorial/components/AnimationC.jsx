@@ -28,7 +28,7 @@ const Insta = styled.img`
 
 const AnimationC = ({ animation }) => (
   <Wrapper>
-    <Insta animation={animation} src="/tutorial/delivery.svg" />
+    <Insta animation={animation} src="/tutorial/delivery.png" />
   </Wrapper>
 );
 

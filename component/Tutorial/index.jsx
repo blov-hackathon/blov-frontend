@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import Slider from "react-slick";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Template from "./components/Template";
@@ -58,7 +57,7 @@ const Item = styled.div`
 `;
 
 const Tutorial = () => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [focused, setFocused] = useState(0);
 
   const settings = {
@@ -79,7 +78,10 @@ const Tutorial = () => {
     else setVisible(true);
   }, []);
 
+
   return (
+
+
     <Wrapper visible={visible}>
       <StyledSlider {...settings}>
         <Item>

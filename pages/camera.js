@@ -4,8 +4,8 @@ import Button from "../component/Button";
 import Margin from "../component/Margin";
 import styled, { css } from "styled-components";
 import { useRouter } from "next/router";
-
 import { useState, useRef } from "react";
+
 import dynamic from "next/dynamic";
 
 import Link from "next/link";
@@ -41,6 +41,8 @@ export default function Camera() {
   const qrRef = useRef(null);
   const [scanResultCamera, setScanResultCamera] = useState("");
 
+
+
   if (typeof window !== "undefined") {
     const item = localStorage.getItem("token");
     if (!item) {
@@ -55,7 +57,10 @@ export default function Camera() {
   const handelScanCamera = (result) => {
     if (result) {
       setScanResultCamera(result);
-      location.href = "/donorDetail";
+        router.push({
+          pathname: "/addAddress",
+          query: {address: result}
+      });
     }
   };
 
