@@ -62,12 +62,12 @@
 
 **BLOV** 는 다음과 같은 서비스들를 통해 헌혈에 대한 `새로운 접근법`을 제안합니다.
 
-<img width="200" alt="스크린샷 2022-01-23 오후 9 26 09" src="https://user-images.githubusercontent.com/78152114/150678537-40c2ffbe-3d06-4de7-b972-3bd59444e807.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="200" alt="스크린샷 2022-01-23 오후 9 26 17" src="https://user-images.githubusercontent.com/78152114/150678568-be1290c5-4666-4c85-8ca7-850636276aef.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="200" alt="스크린샷 2022-01-23 오후 9 26 21" src="https://user-images.githubusercontent.com/78152114/150678867-8f81ea52-ecc6-4d6b-a9df-639f0acd3a70.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="200" alt="스크린샷 2022-01-23 오후 9 26 25" src="https://user-images.githubusercontent.com/78152114/150678892-b181d605-01cc-43e8-80e6-d6f3f4216b98.png">
+<img width="170" alt="스크린샷 2022-01-23 오후 9 26 09" src="https://user-images.githubusercontent.com/78152114/150678537-40c2ffbe-3d06-4de7-b972-3bd59444e807.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="170" alt="스크린샷 2022-01-23 오후 9 26 17" src="https://user-images.githubusercontent.com/78152114/150678568-be1290c5-4666-4c85-8ca7-850636276aef.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="170" alt="스크린샷 2022-01-23 오후 9 26 21" src="https://user-images.githubusercontent.com/78152114/150678867-8f81ea52-ecc6-4d6b-a9df-639f0acd3a70.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="170" alt="스크린샷 2022-01-23 오후 9 26 25" src="https://user-images.githubusercontent.com/78152114/150678892-b181d605-01cc-43e8-80e6-d6f3f4216b98.png">
 
 
 ## 전자헌혈증
 
-<img width="200" alt="전자헌혈증1" src="https://user-images.githubusercontent.com/78152114/150679244-3cac1b4c-ae37-4a01-b8c6-862508b5cefc.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="200" alt="전자헌혈증2" src="https://user-images.githubusercontent.com/78152114/150679250-79e8b95c-65cc-4a00-8a26-721e8185a921.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="200" alt="전자헌혈증3" src="https://user-images.githubusercontent.com/78152114/150679259-5ca3cc90-f991-4302-ba06-f4185d51ee61.png">
+<img width="170" alt="전자헌혈증1" src="https://user-images.githubusercontent.com/78152114/150679244-3cac1b4c-ae37-4a01-b8c6-862508b5cefc.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="170" alt="전자헌혈증2" src="https://user-images.githubusercontent.com/78152114/150679250-79e8b95c-65cc-4a00-8a26-721e8185a921.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="170" alt="전자헌혈증3" src="https://user-images.githubusercontent.com/78152114/150679259-5ca3cc90-f991-4302-ba06-f4185d51ee61.png">
 
 저희는 블록체인을 기반으로 하는 `NFT(Non-Fungible Token)`를 이용해 전자헌혈증을 발급합니다. 사용자가 헌혈을 하면 자동으로 전자헌혈증이 발급되며 더이상 분실을 염려하지 않아도 됩니다. 스마트폰만 있다면 언제든 나의 헌혈증을 확인하고 이용할 수 있습니다.
 
@@ -75,15 +75,15 @@
 
 ## 기부 및 양도 시스템
 
-<img width="200" alt="qr주소" src="https://user-images.githubusercontent.com/78152114/150680330-f71453db-cba3-4142-b8f4-88e564bf0da0.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="200" alt="주소직접입력" src="https://user-images.githubusercontent.com/78152114/150680331-2673eb41-cebd-4667-9a2d-8ea7084fd75d.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="200" alt="주소입력" src="https://user-images.githubusercontent.com/78152114/150680324-12b75f7f-0ab3-4af2-8def-54b3a056d1d1.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="200" alt="헌혈내역" src="https://user-images.githubusercontent.com/78152114/150680319-0284c2cd-2679-4a00-9132-7de8deab08ea.png">
+<img width="170" alt="qr주소" src="https://user-images.githubusercontent.com/78152114/150680330-f71453db-cba3-4142-b8f4-88e564bf0da0.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="170" alt="주소직접입력" src="https://user-images.githubusercontent.com/78152114/150680331-2673eb41-cebd-4667-9a2d-8ea7084fd75d.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="170" alt="주소입력" src="https://user-images.githubusercontent.com/78152114/150680324-12b75f7f-0ab3-4af2-8def-54b3a056d1d1.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="170" alt="헌혈내역" src="https://user-images.githubusercontent.com/78152114/150680319-0284c2cd-2679-4a00-9132-7de8deab08ea.png">
 
 헌혈증이 필요한 사람들에게 기부 및 양도 시스템을 통해 보다 더 큰 사회적 가치를 만듭니다. [기사에 따르면](http://www.kukinews.com/newsView/kuk201910150104), 19년 기준 사용된 헌혈증은 12%에 불과하다고 합니다. **BLOV** 는 QR코드 또는 QR코드으 주소를 입력해 **_손쉽게 헌혈증을 기부 및 양도할 수 있도록 권장하여 헌혈증 사용률을 극대화_** 시킬 수 있습니다.
 
 시대의 흐름을 선도하는 MZ세대 사이에서 제로웨이스트, 비건, 미닝아웃 등과 같이 자신의 신념에 따라 소비하는 문화는 계속 확산되고 있습니다. 이들에게 헌혈증을 디지털 환경을 통해 쉽고 편하게 기부하고 양도할 수 있는 기능은 더욱 효과적일 것입니다.
 
 ## 헌꾸
-<img width="200" alt="헌꾸1" src="https://user-images.githubusercontent.com/78152114/150680860-8503616e-1422-43db-942a-31cd8481ec46.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="200" alt="헌꾸2" src="https://user-images.githubusercontent.com/78152114/150680867-9ebd194f-bb8d-4ddf-a81e-afd6b2c8a370.png">&nbsp;&nbsp;&nbsp;&nbsp;
-<img width="200" height="413" alt="헌꾸 공유" src="https://user-images.githubusercontent.com/78152114/150681276-3e8b825b-3064-442a-9a44-e1b1e64be9e8.png">
+<img width="170" alt="헌꾸1" src="https://user-images.githubusercontent.com/78152114/150680860-8503616e-1422-43db-942a-31cd8481ec46.png">&nbsp;&nbsp;&nbsp;&nbsp;<img width="170" alt="헌꾸2" src="https://user-images.githubusercontent.com/78152114/150680867-9ebd194f-bb8d-4ddf-a81e-afd6b2c8a370.png">&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="170" height="352" alt="헌꾸 공유" src="https://user-images.githubusercontent.com/78152114/150681276-3e8b825b-3064-442a-9a44-e1b1e64be9e8.png">
 
 `헌꾸(헌혈증 꾸미기)`는 MZ세대의 파급력을 이용하여 트렌디하고 장기적인 헌혈 문화 장착을 유도하는 **_BLOV 의 메인 서비스입니다._**
 
