@@ -125,7 +125,7 @@ export default function Custom1() {
   return (
     <Layout>
       <TitleGrid>
-        <BackBtn onClick={() => router.push("/donorDetail")}>
+        <BackBtn onClick={() => router.push("/mywallet")}>
           <BackButton src="/temp/temp-back.svg" />
         </BackBtn>
         <TitleTypography>나만의 헌혈증 꾸미기</TitleTypography>
