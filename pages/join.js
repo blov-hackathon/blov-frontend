@@ -34,23 +34,34 @@ const StyledButton = styled(Button)`
   border-radius: 100px;
   border: none;
   cursor: pointer;
+  background-color: #fff;
+  border: 2px solid #df2a19;
 
   &:hover {
-    background-color: #ffdeeb;
+    background-color: #df2a19;
+    color: #fff;
   }
 `;
 
 const StyledInput2 = styled(StyledInput)`
   position: absolute;
   margin-top: 150px;
+  background-color: #fff;
 `;
 
 const StyledSelect = styled(Select)`
   position: relative;
-  width: 220px;
+  width: 240px;
   margin-top: 16px;
-  margin-left: 16px;
+  margin-left: 40px;
   background-color: #f8f8f8;
+`;
+
+const TypographyBtn = styled(Typography)`
+  color: #df2a19;
+  &:hover {
+    color: #fff;
+  }
 `;
 
 export default function Join() {
@@ -145,14 +156,14 @@ export default function Join() {
       />
       <StyledMargin size="60" />
       <StyledButton
-        backgroundColor="red"
+        color="#df2a19"
         width="280"
         height="50"
         onClick={requestJoin}
       >
-        <Typography color="#fff" size="16">
+        <TypographyBtn color="black" size="16">
           회원가입
-        </Typography>
+        </TypographyBtn>
       </StyledButton>
     </Layout>
   );

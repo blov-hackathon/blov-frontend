@@ -39,11 +39,14 @@ const StyledCheck = styled.div`
 
 const StyledButton = styled(Button)`
   border-radius: 100px;
-  border: none;
+  border: 2px solid #df2a19;
+  background-color: #fff;
+  color: #df2a19;
   cursor: pointer;
 
   &:hover {
-    background-color: #ffdeeb;
+    background-color: #df2a19;
+    color: #fff;
   }
 `;
 
@@ -53,6 +56,12 @@ const StyledText = styled.div`
 
 const StyledTypo = styled(Typography)`
   cursor: pointer;
+`;
+
+const TypographyBtn = styled(Typography)`
+  &:hover {
+    color: #fff;
+  }
 `;
 
 export default function Login() {
@@ -101,26 +110,22 @@ export default function Login() {
         type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Margin size="10" />
-      <StyledCheck>
-        <Typography color="#000" size="12">
-          로그인 상태 유지
-        </Typography>
-      </StyledCheck>
+      <Margin size="14" />
+
       <StyledMargin size="60" />
-      <StyledButton backgroundColor="red" width="300" height="60">
-        <Typography color="#fff" size="16" onClick={requestLogin}>
+      <StyledButton backgroundColor="#df2a19" width="300" height="60">
+        <TypographyBtn color="#df2a19" size="16" onClick={requestLogin}>
           로그인
-        </Typography>
+        </TypographyBtn>
       </StyledButton>
-      <Margin size="5" />
+      <Margin size="10" />
       <StyledText>
         <Typography color="#505050" size="12">
           Blov가 처음이신가요?
         </Typography>
         &nbsp;
         <Link href={"/join"}>
-          <StyledTypo color="#DF2A19" size="12">
+          <StyledTypo color="#df2a19" size="12">
             회원가입하기
           </StyledTypo>
         </Link>

@@ -9,6 +9,8 @@ const Input = styled.input`
   height: 54px;
   box-sizing: border-box;
   outline: none;
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : "#f8f8f8"};
 
   &::placeholder {
     color: #aaa;
