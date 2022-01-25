@@ -76,7 +76,6 @@ export default function Camera() {
         })
         .catch((e) => {
           console.log(e);
-          alert("헌혈증 전달에 실패했습니다.");
           console.log("헌혈증 전달에 실패했습니다.");
         });
     }
